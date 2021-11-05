@@ -1,0 +1,11 @@
+-There should be only one h1 tag on a page
+
+-lorem*n to generate random text (where n = 1, 2, 3, ...)
+
+HTML SKELETON (OR Boiler Plate)
+-<DOCTYPE html> -> is a flag that we need in the beginning
+-<html></html> -> are the root element tag, must be on the top of every document
+-<head></head> -> contains metadata that doesn't show on the page
+               -> our assests go here
+-<title></title> -> These tags go inside the head tag
+-<body></body> -> all the content goes inside these tags
