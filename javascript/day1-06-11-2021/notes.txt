@@ -1,0 +1,43 @@
+-Primitive Types
+--> Number
+--> String
+--> Boolean
+--> Null
+--> Undefined
+--> Others are Symbol and BigInt
+
+-Javascript has only one number type
+
+-NaN --> Not a Number
+--> Is a numeric value and a special value in Javascript
+--> 0/0 or NaN + 5
+
+-Infinity or -Infinity
+--> 1/0
+
+-How to declare variables in Javascript?
+--> Using let and const
+
+-Javascript follows camelCase convention
+
+-Unaray Operators
+--> +=, -=, /=, %=, *=
+--> i++, i--
+
+-var is not used these days to declare variables
+
+-In JS, variables can change type. 
+
+-We can know the type of a variable using the "typeof" keyword
+--> let name = "Abeer" 
+--> typeof name --> "String"
+
+-String methods
+--> trim() -- to remove beginning and trailing white spaces
+--> slice() -- to slice a string (str.slice(3) - will start at 3, and end at the end)
+--> replace(oldString, newString)
+
+-String Template Literals
+--> console.log(`My name is ${name}`)
+
+- Null vs Undefined
