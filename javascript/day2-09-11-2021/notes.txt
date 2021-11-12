@@ -1,0 +1,14 @@
+-The Math Object
+--> Math.ceil()
+--> Math.floor()
+--> Math.pow()
+--> Math.sqrt()
+
+-To generate random number
+--> Math.random()
+
+-Parsing numbers from string
+-->parseInt("123")
+-->parseInt("456.23")
+-->parseFloat("123")
+-->parseFloat("456.23")
