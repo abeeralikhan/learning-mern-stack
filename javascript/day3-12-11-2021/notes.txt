@@ -1,0 +1,83 @@
+-Comparison Operators
+== // equality
+!= // not equal
+=== // strict equality
+!== // strict non-equality
+
+-(==) Double equality
+it checks for equality of the value regardless of the type
+it converts both values to be same type
+1=="1" --> true
+1!="1" --> false
+
+-(===) Tripple equality
+it checks for equality of the value AND type
+1===1 --> true
+1==="1" --> false
+
+-If / Else-if / Else
+
+-Truthy and Falsy Values
+
+-Logical Operators
+Logical AND (&&)
+Logical OR (||)
+NOT Operator (!)
+!false --> true
+!NaN --> true
+
+-The switch statement
+let dayShort = "Mon";
+switch(dayShort) {
+    case "Mon":
+        console.log("Monday");
+        break;
+    case "Tue":
+        console.log("Tuesday");
+        break;
+    default:
+        console.log("Sunday");
+        break;
+}
+
+Note:- If you dont use break in a case, it will run whatever is at below.
+case 1:
+case 2:
+    converts.log("Hello World!");
+    break;
+In the above example, for case 1 to be true, case 2 will run and statement will break at case 2.
+
+-Ternary Operators
+condition ? expIfTrue : expIfFalse
+
+-Arrays in JavaScript
+- const fruits = ["Apple", "Mango", "Banana"];
+OR
+- const fruits = new Array("Apple", "Mango", "Banana")
+
+-Arrays are mutable, that means we can update an element at a certain index
+fruits[1] = "Coconut"; // updating values
+
+-Modifying Arrays
+1) push()    --> Add an element at the end
+2) unshift() --> Add an element at the start 
+3) pop()     --> Remove last element
+4) shift()   --> Remove first element
+
+-More Array Methods
+1) concat() --> It merges arrays. Is called upon an array, and anothers arrays to be merged are passed inside it,
+array1.concat(array2, array3); 
+2) includes() --> Check if passed element is present in the array, and returns in boolean.
+fruits.includes("Pineapple"); --> false 
+3) indexOf() --> Returns index of passed element. Will return -1 if element not found in the array.
+fruits.indexOf("Apple"); --> 0
+4) reverse() --> Reverses the original array
+5) join() --> Converts an array of elements into a string
+['A', 'b', 'e', 'e', 'r'].join('-'); --> 'A-b-e-e-r'
+6) slice() --> We can use negative values that will count from the back
+7) splice(startIndex, NoDeleteItems, ...items)
+8) sort() -- Sorts an array of strings, but for numbers we need to pass functions. 
+
+-Reference Types
+When you create copy of a variable, it just copies the value of that variable
+But, when you create copy an array, both arrays will point to the same address in memory. Hence, updating one will automatically update the other one.
