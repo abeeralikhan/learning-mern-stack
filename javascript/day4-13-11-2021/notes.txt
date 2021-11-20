@@ -1,0 +1,50 @@
+-Objects in JavaScript 
+Data is stored as a key value pairs
+Example:
+const personInfo = {
+    name: "Abeer Ali Khan",
+    age: 21;
+    education: "BS in Software Engineering"
+};
+Note: All keys will be automatically converted into string. 
+
+-How to get keys or values of an object?
+const keys = Object.keys(personInfo);
+const values = Object.values(personInfo);
+
+-Accesing Properties
+personInfo.name;
+personInfo['name'];
+
+-Updating & Adding Properties
+personInfo.name = "Valeed Abdullah";
+personInfo['name'] = "Valeed Abdullah";
+
+-We can make an array of Objects
+const shoppingCart = [
+    {
+        productName: "Dove Shampoo",
+        rating: 4.5,
+        price: 256
+    },
+    {
+        productName: "Olper's Milk 1L",
+        rating: 4.7,
+        price: 210
+    },
+    {
+        productName: "Colgate Brush",
+        rating: 4.6,
+        price: 125
+    }
+];
+
+-Loops in JavaScript
+1) For Loop
+2) While Loop
+3) For...of loop --> Will work on anything that is iterable
+        for(let item of items) {
+            console.log(item);
+        }
+4) For...in loop --> Will loop over the keys of an object
+Note: If you run a for...in loop over an array, you'll get indexes of the values. 
