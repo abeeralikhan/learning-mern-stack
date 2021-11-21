@@ -1,0 +1,5 @@
+-Functions in JS
+Declatation
+function name(arg1, arg2, ..) {
+    // Statements
+}
