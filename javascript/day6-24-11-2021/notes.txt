@@ -1,0 +1,36 @@
+Block Scope:
+-Variables defined inside any block such as in if statement or for loop block.
+-They will be destroyed once that block has completed its work.
+-But, if you use the var keyword to declare the variable, it will be available outside the block scope.
+
+Note: You can't declare two variable with identical names using let. It will throw an error. But it's possible using var.
+Example: 
+let x = 10;
+let x = 't'; // will throw an error because variable of that name is already declared.
+
+Lexical Scope:
+-It means group of nested functions. Inner functions will have access to its parent variables.
+-But, parent function won't have any acesss to its child variables.
+-That means child functions are lexically bound to the execution of its parent function.
+
+Function Expressions:
+-The concept is that we store function inside a variable, because functions are also objects.
+-That means here function has no name.
+-Just like this, we can store an array of functions, or even pass them as arguements. 
+
+Example:
+const add = function (a, b) {
+    return a+b;
+}
+
+const product = function multiply(a, b) {
+    return a*b;
+}
+
+const increment = (value, percent) => value + ( value * (percent/100));
+
+(function(a, b) { return a+b; })() // An example of IIFE.
+
+Function as return values:
+-We return functions :D
+
