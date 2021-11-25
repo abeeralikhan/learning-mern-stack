@@ -1,0 +1,61 @@
+Callbacks:
+-A function passed as a arguement in another function and executed by the outer function.
+-Functions used a callback are anonymous functions.
+
+Note: A function which accepts other functions as an arguement are called "higher order" function.
+
+Why do we use callbacks?
+-Because, often data must be recieved from external APIs, and then a function should be run to makesure the transaction is completed.
+-Or, we need to perform an action preceding by another one. If one happens, then other happens. Otherwise other won't happen.
+
+Hoisting: 
+-When a function or a variable is called before its declaration, and due to hoisting, it works in some languages.
+-When we declare a variable using var, it will be hoisted, that means it will work and give a value
+-But, if we declare a variable using let or const and call it before declaration it will throw an error.
+-Functions are hoisted as well.
+
+***SECTION 10: APPLYING FUNCTIONS TO COLLECTION OF DATA***
+
+-Arrays comes with many built-in methods that accept callback functions.
+-The goal of callback functions on arrays that it will perform operation on all elements one by one.
+1) forEach
+2) map
+3) filter
+4) find
+5) reduce
+6) some
+7) every
+
+Note: split() method called on a string will split it into an array of characters. 
+
+Arrow Functions
+-If we have only one arguement, then we can remove the parenthesis
+const squared = x => x * x;
+
+-We can write expression inside the parenthesis to eliminate the return keyword. But, it will only return one expression not multiple.
+const squared = x => (
+    x * x;
+)
+
+ForEach (it's just a loop)
+-It exist before the for..of loop, and the concept is same i.e to iterate over an array.
+-Does not return a new array, that's why it's half map.
+Example:
+numbers.forEach((n, index) => {
+    console.log(index, n);
+});
+
+Map (most used one)
+-Creates a new array with the result of calling a callback on every element in the array. 
+-Duplicate an array, extract portions of an array, or transform an array into a new array.
+Example:
+const double = numbers.map((n) => n*2);
+
+Find
+-Returns the value of the first element in the array that satisfies the provided testing function.
+-Callback function should return in boolean
+-Once the element is found, it will stop the iteration.
+
+
+
+ 
