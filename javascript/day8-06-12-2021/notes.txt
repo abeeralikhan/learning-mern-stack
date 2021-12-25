@@ -1,0 +1,11 @@
+Filter
+-Returns a new filtered array satisfying the passed boolean condition
+-Or, in other words, you pass a test callback function is the array filter method
+
+Some (Works like a logical 'OR' Operator)
+-It accepts a boolean callback function which it runs on all the elements
+-If at least one condition is true, it will return true otherwise false
+
+Every (Works like a logical 'AND' Operator)
+-It also accepts a boolean callback function which it runs all the elements
+-If it returns true for all the elements then the method will true otherwise will return false
