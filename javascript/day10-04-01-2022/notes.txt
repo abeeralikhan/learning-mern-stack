@@ -1,0 +1,38 @@
+-Default parameters
+    function power(n, m = 1) {
+        let powered = 0;
+        for (let i = 0; i < m; i++)
+            powered*=n;
+        return powered;
+    }
+
+- Spread Operator
+    It's used in three places 
+    Function calls, Array literal, and Object literals
+
+    1) In Function calls:
+        Suppose a function accepts multiple arguements. Now, you have an array containing those arguement, how you'll pass them?
+        One way is to use indexing. Another way is to use spread operator. 
+        What spread operator does is it expands a list of elements into an array arguements. 
+        Example:
+        const nums = [1, 5, 10, 22, 44, 55, 66, 77, 99]
+        Math.max(...nums) ==> Math.max(1, 5, 10, 22, 44, 55, 66, 77, 99)
+
+    2) In Array Literals:
+        We can use elements of other arrays to make an array by using spread. 
+        Spread will basically expand all the elements of an array, and the outer array will catch it.
+        const odds = [1, 3, 5, 7, 9];
+        const even = [2, 4, 6, 8, 10];
+        const nums = [...odds, ...evens];
+
+    3) In Object Literals:
+        We can use properties of another object to make another object.
+        const name = {fname: 'Abeer', mname: 'Ali', lname: 'Khan'};
+        const education = {metric: 'The City Foundation', inter: 'Pakistan Shipowners Government College', uni: 'Usman Institute of Technology University'};
+        const contact = {phone: '03131083726', email: 'khana963@gmail.com'};
+
+        #Spreading into a single object
+        const info = {...name, ...education, ...contact}
+
+
+
