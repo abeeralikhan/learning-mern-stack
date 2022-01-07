@@ -1,0 +1,83 @@
+Note: We can't spread an object literal in an array, while we can spread an array literal in object.
+      Indices will become the keys, and correspoing values will become the values.
+
+- How to take multiple, n number of, or flexible arguements in a function? 
+To implement a such kind of function, we have two ways:
+(1) The Arguements Object (2) Rest Parameters
+
+(1) The Arguements Object (old)
+It is an array like object that you can iterate over, access values using indices.
+But, it does not support major of the useful array methods
+Example:
+function getMax() {
+    // Its possible to spread an arguements object in an array literal
+    const argsArr = [...arguements]; 
+    // Because arguements object does not support the reduce method
+    return argsArr.reduce((max, currentVal) => {
+        return currentVal > max ? currentVal : max;
+    });
+}
+Note: Arguements object is not available in the arrow function.
+
+(2) Rest Parameters (new)
+Its like an spread operator but it's function is opposite
+It takes multiple parameters and creates an array of those parameters.
+Example:
+function getMax(...args) {
+    return args.reduce((max, currentVal) => {
+        return currentVal > max ? currentVal : max;
+    });
+}
+// Or, we can use it in this way
+function fullName(fname, lname, ...titles);
+
+- Destructring
+A short and clean syntax for unpacking values from arrays, and properties from objects into distinct variables
+Suppose if we need to assign a variable to each element of the array, we used destructuring
+(1) Destructring Arrays (2) Destructring Object (3) Destructring Parameters
+
+For example:
+const 2dArr = [[1, 2], [3, 4]];
+const [firstRow, secondRow] = 2dArr;
+const [a11, a12] = firstRow;
+const [a21, a22] = secondRow;
+
+// OR, for destructuring objects
+const info = {
+    fname: "Abeer",
+    lname: "Khan",
+    phone: "03131083726",
+    email: "khana963@gmail.com"
+};
+
+// key and variable names will be same
+const {fname, lname, email} = info;
+
+// To have a separate name for a variable other than the key
+// const {key: newName, ...} = Object;
+const {fname: firstName, lname: lastName, phone} = info;
+
+// Destructring Parameters
+function displayProcess({pid, arrivalTime}) {
+    console.log(`${pid} ${arrivalTime}`);
+}
+const processes = [
+    {
+        pid: 1,
+        arrivalTime: 0,
+        completionTime: 3
+    },
+    {
+        pid: 2,
+        arrivalTime: 0,
+        completionTime: 3
+    },
+    {
+        pid: 3,
+        arrivalTime: 0,
+        completionTime: 3
+    }
+];
+
+const [,proc2] = processes;
+displayProcess(proc2);
