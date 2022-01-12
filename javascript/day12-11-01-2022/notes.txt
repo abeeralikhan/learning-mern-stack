@@ -1,0 +1,32 @@
+- Shorthand object properties
+Used to assign same key as the variable name, and value should be what the varibale holds.
+Example:
+const tempInF = 100;
+const tempInC = 34;
+const avgTempInC = 20;
+const maxTempInC = 41;
+const minTempInC = -2;
+
+const tempData = { tempInC, tempInFm avgTempInC, maxTempInC, minTempInC };
+// Above holds same key name as the variable, and value of the variable without explicitly assigning
+
+- Computed properties
+If we want to set a dynamic key of an object, i.e we don't explicity write the key name, it will be deduced from a variables value.
+const role = "Director";
+const person = "Abeer Ali Khan";
+
+const team = {
+    role: person
+    [role]: person
+};
+Output:
+team --> {"role": "Abeer Ali Khan", "Director": "Abeer Ali Khan"}
+
+- Object Methods
+const info = {
+    name: '',
+    setName(name) {
+        this.name = name
+    }
+}
+
