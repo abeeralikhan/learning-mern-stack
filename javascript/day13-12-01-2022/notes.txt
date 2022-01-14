@@ -1,0 +1,28 @@
+Note: There's a windows object which contains all the functions we make in our javascript file 
+2) When you create a new function, it's stored in the windows object as a new property
+3) You can run your functions by referring to windows object also --> window.my_function()
+4) It also contains the variables as properties that we make using the 'var' keyword
+5) This keyword used in a object, returns the object itself. 
+6) This keywrod used in a function, returns the window object. 
+
+- Destructuring 'THIS' inside the object
+const info = {
+    fullName: 'Abeer Ali Khan',
+    dob: '01/09/2001',
+    nickName: 'coder',
+    getInfo() {
+        const {fullName, dob, nickName} = this;
+        console.log(`${fullName} was born in ${dob}, and known as the ${nickName}`);
+    }
+}
+
+- The value of this depends on the invocation context the function it is used in. 
+const getInfo = info.getInfo();
+// Above line of code will throw an arrow becuse now this will run inside object whict is outside the info object and will return window object
+
+- THIS used inside an arrow function even used in an object return window object.
+
+- BUT, when THIS is usen inside an arrow function used inside an objects method will return parent object i.e that object 
+
+Note: clearInterval(id) --> is used to stop an already running interval by using its id
+Where, let id = setInterval(funct, time);
