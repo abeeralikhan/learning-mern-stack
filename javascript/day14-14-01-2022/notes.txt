@@ -1,0 +1,46 @@
+-Introduction to DOM
+What is it stands for? --> Document Object Model
+
+The DOM is a javascript representation of a webpage
+
+Just like you have "window" object that consist of JS's functions and variables etc
+Same as, "document" is the object that consist of all the objects on a webpage
+Which can be e.g all the tags, webpage specific methods, etc
+
+All the objects are in the exact hierarchical order as in the webpage i.e body tag will be the parent tag,
+ul/ol tags will be the parent tags of li, table tag will be parent tags all the td/tr tags, div tag will be 
+the parent tag, and through it you can access its child tags
+
+The point is, it makes it easier to access all the objects by following exact parent-child relation of all
+the html tags. 
+
+It also has some special properties for all the tags and they're specific to the tags
+
+- Selecting HTML objects
+(1) Select (2) Manupulate
+
+- (1) Select
+(1) getElementById() (2) getElementsByTagName() (3) getElementsByClassName()
+
+- HtmlCollectionObject
+When you select either by className or tagName. You get in return array like HtmlCollectionObject which is not an array.
+It has some basic array properties like you can iterate over it using indexes
+But, array methods won't be available on it e.g splice, indexOf, includes, reduce, filter etc
+Note: We can convert it into an array by spreading into an array.
+
+- querySelector & querySelectorAll
+The DOM method querySelector is relatively a new method which selects elements by using CSS
+We can write more specific statements using a querySelector
+querySelectorAll selects multiple objects and returns NodeList Object, which is an array like object but it not an actual array
+
+- (2) Manipulate
+
+- innerText
+Will return all the inner text of an element i.e not only the element's text, but all the text of its children
+Suppose, you take the innerText of a body element. It will return all the text present on the entire page
+
+- textContent
+Same as innerText, but it's more faster. Because it retains the formatting an element's text i.e 
+spaces, returns, tabs. 
+It will also return text of hidden elements
+
