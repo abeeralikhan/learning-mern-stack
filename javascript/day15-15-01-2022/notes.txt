@@ -1,0 +1,76 @@
+-innerHTML
+It returns all the html elements on the tag its used on
+You can append new html tags using it in the string form and it will read as valid html tags
+
+-We can access all the attributes of an element as object properties
+e.g 
+checkBox.checked --> will return true or false
+anchorTag.href 
+tag.src
+input_text.value etc
+
+-getAttribute(<ATTRIBUTE-NAME>) & setAttribute(<'ATTRIBUTE-NAME'>, <VALUE>)
+There are some attributes which we cannot access using properties.
+So, to access and manipulate them we use setAttribute and getAttribute methods
+e.g
+textInput.setAttribute('type', 'text');
+textInput.getAttribute('value');
+
+- parentElement
+returns parent element of the tag
+
+- children
+returns all the children elements of a tag in the form NodeList (i.e an array like object)
+
+- previousElementSibling
+returns previos element of the selected element
+
+- nextElementSibling
+return next element of the selected element
+
+- 'style' property
+using this property of an element we can change it's style
+but, it will follow camelCasem not kebab-camelCase
+e.g
+element.backgroundColor
+element.fontSize
+Note: This will add inline style to the element, and it won't contain any style from the style sheet
+
+- getComputedStyle(ELEMENT_OBJECT)
+it returns a style object of all the on going default styles
+whether coming from inline or stylesheet, it will display the most updated one
+
+- classList
+this property is really helpful while dealing with classes
+element.classList.add(CLASS_NAME)
+element.classList.remove(CLASS_NAME)
+element.classList.toggle(CLASS_NAME)
+
+- createElement(TAG_NAME)
+this method creates a new empty html element
+
+- appendChild(NEW_ELEMENT_OBJECT)
+this method inserts an element at the end
+
+- insertBefore
+it's used to insert an element at a specific position
+PARENT_OBJECT.insertBefore(NEW_OBJECT, BEFORE_THIS_OBJECT);
+
+- insertAdjacentElement
+it's used to insert an element at a specific position
+PARENT_OBJECT.insertAdjacentElement(<POSITION>, BEFORE_THIS_OBJECT);
+
+positions = ['beforebegin', 'afterbegin', 'beforeend', 'afterend'];
+
+- append & prepend
+both methods used to insert multiple elements either at the beginning or at the end of an element
+obj.append(OBJ1, OBJ2, OBJ3, ....)
+obj.prepend(OBJ1, OBJ2, OBJ3, ....)
+
+- removeChild()
+PARENT_OBJECT.removeChild(ELEMENT_OBJECT);
+
+- remove()
+more precise and short syntax
+no need to specify the parent tag
+ELEMENT_OBJECT.remove()
