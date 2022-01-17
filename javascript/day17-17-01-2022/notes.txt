@@ -1,0 +1,13 @@
+- Key Events
+(1) Keydown (2) Keyup (3) Keypress
+
+(1) Keydown --> 'keydown'
+This event will be fired when any key is pressed. Keys include letters, numeric, alt, cntrl, shift, enter etc
+Regardless something is typed on the screen or not
+
+(2) Keyup --> 'keyup'
+This event will be fired when any key is released. Keys include letters, numeric, alt, cntrl, shift, enter etc
+
+(3) Keypress --> 'keypress'
+This event will be fired when any key, that show's some output on the screen is fired 
+i.e alphabets, numbers, special characters, enter, shift or backspace
