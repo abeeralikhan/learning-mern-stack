@@ -1,0 +1,17 @@
+-inline events 
+They are used just as attributes
+e.g
+elementObj.setAttribute('onclick', 'alert()');
+elementObj.onclick = 'alert()'; // OR
+
+-Drawback of inline events
+JS code everywhere in html
+Too much mess
+Can not call multiple events on a single element
+
+-ElementObj.addEventListener('even-name', <FUNCTION TO RUN>)
+It's the most common and efficient way of adding events to our html elements
+We can add multiple events to a single element using it
+
+- addEventListener and THIS
+The function which is binded to an element using addEventListener method, can access that element object inside it using the THIS keyword

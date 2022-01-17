@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .box {
+        height: 100px;
+        width: 100px;
+        margin: 5px;
+        float: left;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors App</title>
+</head>
+<body>
+    <h1>Select any box</h1>
+    <div id="container"></div>
+</body>
+<script>
+    const colors = ['red', 'green', 'blue', 'teal', 'orange'];
+    const container = document.querySelector('#container');
+    const h1 = document.querySelector('h1');
+    const updateTitle = function() {
+        h1.style.color = this.style.backgroundColor;
+    };
+    for (let color of colors) {
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.style.backgroundColor = color;
+        box.addEventListener('click', updateTitle);
+        container.appendChild(box);
+    }
+</script>
+</html>
