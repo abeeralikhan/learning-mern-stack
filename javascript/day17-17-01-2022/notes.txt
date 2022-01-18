@@ -11,3 +11,32 @@ This event will be fired when any key is released. Keys include letters, numeric
 (3) Keypress --> 'keypress'
 This event will be fired when any key, that show's some output on the screen is fired 
 i.e alphabets, numbers, special characters, enter, shift or backspace
+
+- The Event Object
+Every function bind to an event recevies an event object. That event object contains data about the event, suppose if event is the mouse click, it's x and y co-ordinates.
+Most importantly, it contains 'target' property, which refers to the element_object it has been triggered on.  
+Suppose, you click a button, so the target object will be that button element etc
+
+- 'form' Event and the preventDefault() method
+Once we click on the submit button in a form, the page is refreshed and all the input data is automatically cleared. 
+To prevent this from happening, we listen to an event especially associated with the form i.e 'form'
+When this event is trigerred, we capture the event object and run the preventDefault method on it
+
+e.g
+formObj.addEventListener((event) => {
+    event.preventDefault();
+});
+
+- 'input' event
+This event triggers a function once the input of the element object it's bind to changes.
+Suppose, you bind this event to a search bar. Whenever the user type something, this event will be triggered
+or in the example of checked box, once the box is checked or unchecked this event will be fired
+or in the example of options, once an option is selected this event will be fired
+
+- 'change' event 
+This event will trigger as user jumps from one input to another, or changes fields.
+
+- Basic difference b/w 'input' and 'change' Events
+input will be triggered on every key stroke by while change will be triggered once user go from one input field to another.
+
+
