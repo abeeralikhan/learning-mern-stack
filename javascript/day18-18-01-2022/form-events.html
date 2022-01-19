@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Events</title>
+    <style>
+        p {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the registeration form!</h1>
+    <h2>Please enter your details</h2>
+    <form action="/home" id="registeration">
+        <input type="text" name="username" placeholder="Enter your username" id="name"><br>
+        <input type="password" name="pswd" placeholder="Enter your password" id="pswd"><br><br>
+        <input type="checkbox" name="policy" id="policy-check">
+        <label for="policy">I agree to terms and policy</label><br>
+        <input type="submit" name="submit-form" id='submit-button'>
+    </form>
+    <br>
+    <div id="output">
+        <h2>Entered Details</h2>
+        Username: <b><p id="display-name"></p></b><br><br>
+        Password Strength: <b><p id="pswd-strenght"></p></b><br><br>
+        Terms & policy: <b><p id="display-terms-policy"></p></b><br><br>
+    </div>
+</body>
+<script>
+    const form = document.querySelector('#registeration');
+    const inputName = document.querySelector('#name');
+    const inputPswd = document.querySelector('#pswd');
+    const inputPolicyCheck = document.querySelector('#policy-check');
+
+    const inputs = [inputName, inputPswd, inputPolicyCheck];
+
+    const info = {};
+    const outputs = {
+        username: document.querySelector('#display-name'),
+        pswd: document.querySelector('#pswd-strenght'),
+        policy: document.querySelector('#display-terms-policy')
+    };
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+    });
+
+    for (let input of inputs) {
+        input.addEventListener('input', (event) => {
+        info[input.name] = event.target.type == "checkbox" ? event.target.checked : event.target.value;
+        updateOutput();
+    });
+    }
+
+    const updateOutput = () => {
+        for (let i in info) {
+            if (i === 'pswd') {
+                outputs[i].innerHTML = checkPswdStrength(info[i]);
+            } else {
+                outputs[i].innerHTML = info[i];
+            }
+        }
+    }
+
+    const checkPswdStrength = (pswd) => {
+        const specialChar = "' ! @ # $ % ^ & * ( ) _ + - = [ ] [ ] ; : | ? > ";
+        const numerals = "1 2 3 4 5 6 7 8 9 0"
+        let specialCharCount = -1;
+        let numeralCount = 0;
+
+        specialChar.split(' ').forEach((char) => {
+            if (pswd.includes(char)) specialCharCount++;
+        });
+        numerals.split(' ').forEach((numeral) => {
+            if (pswd.includes(numeral)) numeralCount++;
+        });
+
+        console.log(specialCharCount, numeralCount);
+        if ((specialCharCount > 0) && (numeralCount > 0)) {
+            return 'Strong';
+        } else if ((specialCharCount > 0) || (numeralCount > 0)){
+            return 'Medium';
+        } else {
+            return 'Weak';
+        }
+    }
+
+    
+</script>
+</html>
