@@ -17,13 +17,13 @@ Every function bind to an event recevies an event object. That event object cont
 Most importantly, it contains 'target' property, which refers to the element_object it has been triggered on.  
 Suppose, you click a button, so the target object will be that button element etc
 
-- 'form' Event and the preventDefault() method
+- 'submit' Event and the preventDefault() method
 Once we click on the submit button in a form, the page is refreshed and all the input data is automatically cleared. 
 To prevent this from happening, we listen to an event especially associated with the form i.e 'form'
 When this event is trigerred, we capture the event object and run the preventDefault method on it
 
 e.g
-formObj.addEventListener((event) => {
+formObj.addEventListener('submit', (event) => {
     event.preventDefault();
 });
 
