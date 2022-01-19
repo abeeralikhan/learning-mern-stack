@@ -1,0 +1,9 @@
+- Call Stack
+The mechanism the JS interpreter uses to keep track of its place in a script that calls multiple functions
+HOW JS "knows" what functions is currently being run and what functions are called from within that function, etc
+
+- JS is single thread
+All the code inside a script runs on a single thread
+that means two different tasks cannot be performend on at the same time
+for this to make possible, we implement asynchronous programming
+
