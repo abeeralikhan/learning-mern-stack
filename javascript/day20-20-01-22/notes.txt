@@ -1,0 +1,4 @@
+-Problems without promises (Callback hell)
+We have some code that works if request is successful, and we also have some code that run when request fails.
+Which means we may face multiple callbacks, and our code gets complicated.
+And, to solve this complication of code, and to make it more easier to read, we uses promises.
