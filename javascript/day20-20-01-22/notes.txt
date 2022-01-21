@@ -2,3 +2,31 @@
 We have some code that works if request is successful, and we also have some code that run when request fails.
 Which means we may face multiple callbacks, and our code gets complicated.
 And, to solve this complication of code, and to make it more easier to read, we uses promises.
+
+
+-Promises
+They are mostly used in HTTP requests. HTTP requests sometimes take sometime to process, and after they're completed processing
+returns some status code which signifies whether it was successful or not, and on the basis of its status we run different 
+callbacks. On successful we run resolve callback, and on unsuccessful we run reject callback.
+
+Promise is basically like a real world promise, that promises to run some code after the request has been processed
+
+We use promises in asynchronous programming, that means we show some data on the screen meanwhile some other code is also running to get the data 
+from the APIs
+
+Two methods used by promises
+(1) then (2) catch
+
+1) then runs if the request is resolved
+2) catch runs if the request is rejected
+
+const makeConnection = new Promise((resolve, reject) => {
+    // some code
+});
+
+makeConnection.then(() => {
+    // run code on request successful
+}).catch(() => {
+    // run code on request unsuccessful
+});
+
