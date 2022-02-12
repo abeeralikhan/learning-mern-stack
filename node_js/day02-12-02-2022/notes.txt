@@ -1,0 +1,60 @@
+-- Node JS Fundamentals: Foundations & Environment setup
+
+- Node JS has a process object which contains all the information about the current process.
+    + process object has an attribute argv, which contains all the command line arguements
+        + Eg: node hello.js abeer
+            process.argv[0] --> Destination of "node" command
+            process.argv[1] --> Destination of the file "hello.js"
+            process.argv[2..n] --> Passed arguements into the process such as "abeer"
+
+- Node JS does not have the window object (that means no alert() etc)
+    + Instead, is has the global object
+        + global object consist of all the node js related functions
+            such as global.console.log("Hello World")
+
+- Some useful objects and methods available in Node JS
+    1) global
+    2) process
+    3) module
+    4) __filename
+    5) __dir
+    6) require()
+
+-- Node JS Fundamentals: Internals
+
+- Node JS Environment
+    + It includes:
+        1) Javascript Engine
+        2) Node JS APIs (fs, http, path, crypto)
+        3) Node JS bindings (written in C/C++)
+        4) Libuv
+
+- What does libuv do?
+    + It handles Asynchronous I/O requests from node js programs
+
+- Node js github repo
+    + It contains "lib" directory which consists of all the Javascript objects & methods implementation
+    + It also contains "src" directory which consists of all the C++ bindings to communicate with libuv 
+
+- How a request process internally in node js? 
+    + file.js --> fs.open() --> [NODE JS API (in javascript)] --> [NODE JS BINDINGS (in C++)] --> [LIBUV (in C)]
+                     ^                        ^                                 ^                        |
+                     |                        |                                 |                        |
+                     |<-----------------------|<--------------------------------|<-----------------------|                      
+
+- Synchronous vs Asynchronous
+    + What does Asynchronous mean?
+        + In programming, it often describe as opposite of Synchronous
+        + Synchronous means code is running line by line in sequence
+        + So, Asynchronous code does not necessarily run line by line
+        + Async functions run in the background while your javascript is alredy moved to the next line of code
+        + Async programming helps us handle many things side by side to provide uninterrupted user experience        
+
+- Asynchronous Callbacks
+
+- What is a non-blocking function?
+    + That runs in the background or in parallel without blocking the execution of the script
+
+- Is javascript Synchronous?
+
+- Multi-Threading, Processes, and Threads
