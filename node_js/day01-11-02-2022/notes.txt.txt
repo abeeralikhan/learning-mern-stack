@@ -1,0 +1,9 @@
+- Node JS is used to run javascript outside the browser
+- Chrome uses V8 engine
+- Node JS also uses chrome's V8 engine
+- It was developed in 2009
+- Node JS is Javascript runtime
+- A runtime is where program is executed and operations like reading and write are also done 
+- Node also uses libuv that communicates with V8 engine 
+- Any asynchronous operation is performed by node is using libuv library
+- The web browser is also a javascript runtime
