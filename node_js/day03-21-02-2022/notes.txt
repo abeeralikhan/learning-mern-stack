@@ -1,0 +1,87 @@
+- Javascript is single threaded
+
+- Libuv handles all the asynchronous calls and contains following things:
+    + Event loop
+    - Asynchronous I/O Calls to:
+        + File System (e.g HTTP requests)
+        + Network (talking to the servers over the internet)
+
+- If Javascript is single threaded, then how node allows us to execute code asynchronously?
+    + Whenever we call an asynchronous function from Javascript, node puts it on the "Event loop"
+    + All Javascript code runs on the main node thread, and any asynchronous function is put on the event loop
+    + When the result of an asynchronous function is ready on the event loop, it notifies, and runs the callback
+
+- Where do the asynchronous calls process?
+    - Network calls
+        + Procees directly in the operating System (kernel)
+
+    - File system (e.g reading a file)
+        + Process in the "Thread Pool" inside Libuv
+        
+- What is the "Thread Pool" and where does it recide?
+    + Thread Pool is a group of threads already setup ahead of time by libuv to handle async calls to the file system
+    + Note: Libuv is writted in C Language and C supports multithreading
+
+- How many threads are there in a thread pool and what are they assigned to perform?
+    + There are a total of five threads in the threadpool
+    + One is the main thread which is executing the V8 (Javascript code) and Event Loop
+    + Four are free to be used by any async call to file systems
+
+- What will happen if all four threads are already working?
+    + Then, that call will wait for a thread to complete its work
+    + When one is free, then it will be assigned to that async call
+
+- Why do we use a thread pool which has threads that are setup ahead of the time?
+    + Because, it saves CPU from creating and destroying new threads for every task that comes in
+
+- What happens when a task running by a thread is completed?
+    + It notifies the Event Loop, which in turn runs the corresponding callback function
+
+- Does the thread pool handle all the async calls?
+    + No, it only handles few async call that are mainly to the file systems
+    + It is a misconception that the thread pools handles all the async calls
+    + Network calls are handles by OS, like talking to other computer systems, 
+    mainly is its kernel, which is good at handling these task using its own resources
+
+- Is it a disadvantage that Javascript is single threaded?
+    + No, not at all
+    + Javascript being single threaded is the biggest strength of node js
+    + Because, JS developers do not have to worry about handling complex threads
+    + All the async calls are automatically handled behind Node JS by OS & Event Loop
+
+- Event loop is just a single loop that starts running and process events as the node program starts and exits as the progarm has completed its execution
+
+    while(!shouldExit) {
+        processEvents();
+    }
+
+- How does the event loop process functions or what does the processEvents function do?
+    - And, what kind of events does it handle?
+
+- What are Callback Queues? [ Event Queue; Message Queue ]
+    + A callback queue stores all the callback functions that need to be run
+    + Once an async call has completed its execution, it's callback function is enqueued on a callback queueu
+    + We use a queue system so all the callback functions execute in a reasonably fair amount of time without interrupting each other
+
+- What does the event loop do to the queue of callbacks?
+    + Event loop has multiple phases and each phase has its own queue of callbacks
+    - Event loops phase are [ these phases are executed in given order ]:
+        - Timers
+            + setTimeout [ runs the function only once ]
+            + setInterval [ same as setTimeout, but it lets a function runs many time repeatedly on a specified interval ]
+            + setImmediate [ runs passed function immediately; but not that immediately ]
+        + I/O callbacks [ poll queue; contains most of node's callbacks ]
+        + setImmediate [ runs immediately after any I/O operation ]
+        + Close callbacks [ closing a file or network connection; runs at the end ]
+
+    + Once the event loop cycle is completed, it begins again from the start
+
+- What is node good at?
+    + Talking to servers and databases
+    + Heavy I/O processing [ such as video processing ] 
+
+What is node not good at?
+    + Machine learning
+    + Heavy calculations
+
+
