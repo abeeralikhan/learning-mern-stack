@@ -1,0 +1,37 @@
+[ 04:05 PM ]
+
+- Observer Design Pattern
+    + Multiple observes observe a subject for an event
+
+- The Node Event Emitter
+    + Much of Node JS API is built around an asychronous event-driven architecture in which certain
+    kinds of object (called 'emitters') emit named events that cause Function objects ('listeners')
+    to be called. 
+    + Here callback functions are reffered to as 'listener' objects, that listen to certain named events
+    + These listener objects execute when emitter emits certain named function
+    + Emitting: sending it out or triggering some event
+    + It is done using the 'EventEmitter' class
+
+- How do we create new subjects that observers can listen named events to?
+    + By creating multiple instances of the EventEmitter class 
+    + For Example:
+                    const cricketer = new EventEmitter(); --> Subject 1
+                    const celebrtity = new EventEmitter(); --> Subject 2
+
+- How do we create observers that can listen to named events emitted by these subjects?
+    + By using the 'on' method on the EventEmitter class' instances 
+    + EventEmitter_instance.on('<NAMED-EVENT>', <Listener: A callback>);
+    + For Example:
+                    cricketer.on('signs new contract', () => {
+                        console.log('Woohoo! He has joined another tournament, its gonna be fun!');
+                    });
+
+- How do we emit events from subjects or EventEmitter class' instances?
+    + By using the 'emit' method on the instances
+    + EventEmitter_instance.emit('<NAMED-EVENT>');
+    + For Example:
+                    cricketer.emit('sings new contract')
+
+- Note: The 'process' module that we use in node is also an instance of the EventEmitter class
+    + We listen to certain named events on the process instance that are emitted automatically by the app
+    
