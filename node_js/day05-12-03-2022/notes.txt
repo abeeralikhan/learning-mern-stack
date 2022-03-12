@@ -1,0 +1,61 @@
+[ 18:54 ]
+
+~ Node JS Fundamentals: Module System:
+
+- The "require()" function
+    + It helps us in using other libraries in our code
+    + Those libraries can be either built-in e.g. events, https etc, or those can be developed by other developers
+    + It takes-in name of the js file, executes it, and returns the code
+    + We store the result in a variable using the const keyword
+    + In simple words, it helps us in importing other files or libraries in our code 
+
+- The Http module
+    + We use it to make http requests
+    + Request is method that uses another function explicitly i.e. end() to know request is completed
+
+- How we can requst data from a URL using the Http module?
+    + Using request() or get() functions
+    + Both, accepts two arguements, first is the url name, and the second one is a callback function
+    + Callback function receives a 'res' arguement, which is also an instance of the EventEmitter class
+    + We can listen to named events on the 'res' arguement using "on()"
+    + It generates two most important events - 'data' & 'end'
+    + Data is emitted when the server sends the requested data, using an arguement 'chunk' in the observer's callback function
+    + Whereas, the 'end' event signifies no more data is to be sent by the server
+
+- What is a node module?
+    + Node module is a box, which contains some code, that is specifically written for solving a single problem
+    + Example: http.js, events.js, etc
+    + Are the examples of some commonly used built-in node modules
+    + A program uses multiple node modules to make a single application
+    + Theses modules work together in a single application
+
+- Why do we use modules?
+    + Reuse existing code
+    + Organize your code and reduce complexity
+    + Expose functions that only be used, and hide others
+
+- Creating our own node modules
+    + Every file is treated as a module 
+    + We can create CommonJS modules or ECMAScript modules
+
+- Creating CommonJS modules
+    + We create by using require() function and module.exports
+
+- Creating ECMAScript or ES6 modules
+    - How to use them?
+        + By using syntax:
+            import..[as]..from
+            import { power } from './my_module/easyMath.mjs'
+
+    - How to export them?
+        + By using syntax:
+            export {myFunct, myVariable};
+            export function myFunc() {...}
+            export {power, average}
+
+- Difference b/w CommonJS and ECMAScript
+    + Extension is necessary in ECMAScript
+    + Extension is '.mjs'
+    
+- What module is most commonly used in node?
+    + CommonJS modules
