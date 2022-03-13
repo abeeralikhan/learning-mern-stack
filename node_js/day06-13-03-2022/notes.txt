@@ -1,0 +1,108 @@
+[ 13/03/2022 21:33 ]
+
+- Module caching
+    + Whenever we load a module or a function from a module, node stores that module inside
+    the cache
+    + Caching helps time by eliminating the loading of a module again and again. Instead,
+    it first looks inside the cache. If a module is already present there, then it will returns its
+    functions or methods
+
+- How to see which modules are currently in node js cache?
+    + By using property:
+        require.cache
+
+- What we use index.js for?
+    + It is used to initialize a directory as a module
+    + It is a single point from where all the other functions inside a directory can be referenced
+    + It exports all the functions
+
+- Should we use index.js?
+    + Probably not. Because, it adds unnecessary complications inside your code
+    + It's code to know about index.js if you happen to see it somewhere, but using it in your projects
+    is not ideal
+    + Preferably, you should directly load the required modules
+
+~ Node JS Fundamentals: Package Management
+
+- Why do we need a package manager?
+    + Sometimes, while making requests to servers and databases, we need additional functionality in our
+    program
+    + Therefore, we need to utilize third-party packages implemented by other developers in our code
+    + Package manager is a tool which consist of a bundle of packages developed by other developers
+    + We use third-party packages in our program to reduce time of development by not making everythin from
+    scratch, and utilize code that is already been test by others 
+
+- What is NPM?
+    + Node Package Manager is a tool that node uses to manage and access third-party packages 
+
+- What's the difference between a module and a package?
+    + A module is a file which exports several functions 
+    + A package is a collection of modules]
+
+- How do we create a package using NPM?
+    + STEP 1: Initialize NPM Package
+        >> npm init
+        >> npm init -y // OR
+
+    + STEP 2: Install third-party packages
+        >> npm install PACKAGE_NAME
+        >> npm i PACKAGE_NAME // OR
+        >> npm install // used while cloning a github repository; automatically installs required dependencies
+
+    + STEP 3: Creating and runnig a script (optional)
+        - We can create a command which will run our intended script
+        >> "start": "node file.js"
+        >> npm run start 
+        >> npm start // We can eliminate run for running start command
+
+- Why did we need to initialize a package to install a third-party package?
+    + Because, we needed the "package.json" file, which only exist for node packages
+    + Most node programs are packages to make the use of NPM
+    + But, we may not publish our package to the registry
+
+- What is the NPM Registry?
+    + Its where all the third-party packages are located
+    + Its basically a database of third-party packages
+    + Npmjs.com
+
+- What's the difference between the modules Http and Axoius?
+    + Axious is Promise based, and more cleaner as compared to the http module
+    + While requesting for a URL, axious returns a promise, which can be chained on using then()
+    and errors can be catched using catch()
+    + Automatic transforms for JSON data
+
+- What does the node_modules folder consist of?
+    + It consist of all the dependencies, as well as dependencies of dependencies
+    + Now a days, node_modules folder is much more smaller as compared to before
+    + Because, NPM has now become much more efficient and avoids duplication of dependencies
+
+- What is semantic versioning?
+    + It's a convention of versioning your node packages
+    - Given a version number MAJOR.MINOR.PATCH, increment the:
+        + MAJOR version when you make incompatible API changes,
+        + MINOR version when you add functionality in a backwards compatible manner, and
+        + PATCH version when you make backwards compatible bug fixes.
+
+    - For Example:
+        + version 2.1.3
+
+- What is package-lock.json?
+    + It helps us avoid bugs
+    + It's automatically generated or updated when we run a npm command that modifies the node_modules folder
+    or the package.json file
+    + Provides a much more specific description of dependencies than package.json
+
+- Special characters in versioning 
+    - Carot (^)
+        + If a carot symbol prefixes a verion e.g. ^1.16.1, it means all version greater than or equal to
+        minor version but not less than it
+        - For Example:
+            + ^1.16.1 --> 1.16.1, 1.16.3, 1.17.1, 1.18.4 
+            + ^0.21.3 --> 0.21.3, 0.21.4, 0.21.5, 0.21.7
+            [Note: When major version is <1, then minnor version is considered as major version]
+
+    - Tilda (~)
+        + If a tilda symbol prefixes a verion e.g. ~1.16.1, it means all version greater than or equal to
+        patches but not less than it, and major and minor version will remain fixed
+        - For Example:
+            + ~1.16.1 --> 1.16.1, 1.16.3, 1.16.7

@@ -1,0 +1,16 @@
+{
+  "name": "day06-13-03-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http_prac.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node testing_axios.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
