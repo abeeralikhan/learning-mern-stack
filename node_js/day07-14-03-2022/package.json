@@ -1,0 +1,16 @@
+{
+  "name": "day07-14-03-2022",
+  "version": "1.0.0",
+  "description": "Testin nodemon",
+  "main": "testing_nodemon.js",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon testing_nodemon.js"
+  },
+  "author": "Abeer Ali Khan",
+  "license": "ISC"
+}

@@ -1,0 +1,46 @@
+[ 14/03/2022 19:55 ]
+
+- What are the vulnerabilities in dependencies?
+    + When our app is using an outdated package, there's high chances that there must be some
+    vulnerabilities for the hackers
+
+- How do we know if our app has any vulnerability?
+    - NPM informs us by giving warnings
+        - Then, we can fix those issues by running command:
+            >> npm audit fix
+            >> npm audit // To see what are those issues
+    
+    - Sometimes, npm does not give us warnings but vulnerabilities pertain
+        + Therefore, it's best to alternative package if come to know about certain silent issues
+
+- Difference between local vs global packages
+    + Local packages are available just in your app, whereas global packages will be available 
+    in every local app
+    + Global packages are installed basically in your machine and can be acessed from anywhere
+    + We can install or uninstall local, and as well as global packages
+
+- How to install a package globally?
+    >> npm install -g PACKAGE_NAME
+
+- How to uninstall a package?
+    >> npm uninstall PACKAGE_NAME
+    >> npm uninstall -g PACKAGE_NAME // to uninstall a global package
+
+- Why do we use the NPM Tool "Nodemon"?
+    + Nodemon is used to automatically restart the server once the file is updated and saved
+    + We have to only run the file once, and will keep running. Whenever file new updates come,
+    it will automatically rerun it
+
+- How to use nodemon?
+    - We can use it just like we "node" command
+        + Just replace the "node" command with "nodemon"
+        [Note: "nodemon" will only work if you have installed nodemon globally.
+        Otherwise, you have to refer to its path e.g. './node_modules/.bin/nodemon file.js']
+    - If we have installed it locally, then we can use it from the script
+        + Create a new script command form nodemon e.g. dev, and give the value 
+        'nodemon file.js'
+        - Then, you can use it like this:
+            >> npm run dev // will run the intended file as a server
+    
+
+
