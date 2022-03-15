@@ -1,0 +1,74 @@
+[ 15/03/2022 16:42 ]
+
+- What is DNS server?
+    +  It does the mapping of domain name and ip addresses
+
+- What is Http server?
+    + It takes the ip address and returns the required web page
+
+- What is DNS cache?
+    + It stores called/used domain names and mappings 
+
+- Why port number is used with the ip address?
+    + It identifies the process or application
+
+- What is http? Why do we use it?
+    + Http stands for Hyper Text Transfor Protocol 
+    + It makes the communication between web browser and servers possible
+    + We used it to communicate with the web server
+
+- What are http methods? Why do we use them?
+    + They are known as "http verbs"
+    + We use these methods to communicate and give directions to the server to perform operation
+    over the server
+    - Some common http methods are: 
+        + GET, POST, PUT, DELETE, etc
+
+- What is an API?
+    + It's an interface between the application and the server
+
+- What is a http request?
+    + A http request consists of one of the http methods, and path or resource name
+    on which you have to perform the operation on
+    - Examples:
+        + GET/friends --> friends is a collection that you're requesting for
+        + GET/friends/5 --> friends/5 is a specfic record that you are requesting 
+        + POST/messages --> messages is the collection in which you're adding some data
+        + PUT/messages/5 --> messages/5 is the specfic request that you're requesting to update
+        + DELETE/messages/15 --> messages/15 is the specfic data you're requesting to delete
+        + DELETE/friends/5 --> friends/5 is the specfic data you're requesting to delete
+
+    [Note: PUT & DELETE methods always takes an id of an item, whereas it's optional for the 
+    GET method, and POST does not require an id because it's just inserting a record]
+
+- What are the four parts a http request consists?
+    - A http request consists of:
+        - Method --> Specifies what type of operation needs to be performed by the request
+            + Example --> GET, POST, PUT, DELETE, etc
+        - Path --> Specifies the path of the resource that need to be accessed by the request
+        for the operation
+            + Example --> /friends, /messages, /friends/5, /messages/15, etc
+        - Body --> Consists of data a request needs to add or update in the resource
+            + Only PUT & POST methods has a body. For GET & DELETE, server already has required data
+            + Generally, data sent and received by the server is in the JSON format
+        - HEADER --> Consists of metadata (data about the data)
+            + A request must have the hostname in it's header
+
+    - Structure of a request --> [HEADER | METHOD | PATH | BODY]
+    - Example:
+        + [ facebook.com | POST | /messages | {message: 'Hello!', timestamp: '150320221750'} ]
+
+- What is a HTTP response?
+    + It's the response, the web servers gives against our request
+
+- What are the three parts a reponse consists of?
+    + HEADER --> Data about the data in response's body and reponse's content-type
+    + BODY --> Consists of data requested in the request
+    - STATUS CODE --> Tells us whether the request was successfull or not
+        + Informational responses (100–199)
+        + Successful responses (200–299)
+        + Redirection messages (300–399)
+        + Client error responses (400–499) --> Signifies an error in a clinet's request or from client side]
+        + Server error responses (500–599) --> Signifies an eror from the server side; request was authorized ] 
+
+
