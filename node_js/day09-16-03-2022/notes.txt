@@ -1,0 +1,60 @@
+[ 16/03/2022 14:40 ]
+
+- How servers are created in Node JS?
+    + Using the http module's function 'createServer'
+    + When we initialize it, it returns instance of a EventEmitter Class
+
+- Why do we use '.on()' listener on the createServer instance?
+    + When we initialize it, it returns instance of a EventEmitter Class
+    + Therefore, we can listen to named events on it
+
+- How does the 'request' named event work?
+    + When a request is made using the localhost server, the request named event is emitted, 
+    and it receives request and response object in its callback that can be used to make a
+    response
+
+- How do we know what url is called by a request?
+    + We can identify it using the request object's property "url" i.e. "request.url"
+
+- What are the endpoints?
+    + They're the path to the resources 
+    - For Example:
+        + /showAll
+        + /show/5
+        + /addData
+
+- How do we set header and status code of a response?
+    + We set status using the property "statusCode"
+    + We set header using the method "setHeader()"
+
+- How do we respond to client with data?
+    + We pass data in the end() function
+    + End function is necessary to put at the end of every request to stringify response
+    been end processing
+    + res.end(JSON.stringigy(data))
+
+- Why do we use JSON.stringify() functon?
+    + Because, end function receives a string, we can pass any object directly into 
+    + Therefore, we use JSON.stringify() method to convert an object into a string
+
+- How do we start a server?
+    + A server is started using the "listen" method
+    + Listen method accepts a port number, defualt is 80, and a callback function
+    + Listen method listens to request and emit named events for every request
+
+- What is the same origin policy?
+    + [ TO BE WRITTEN ]
+
+- What is CORS?
+    + [ TO BE WRITTEN ]
+
+- How data is posted?
+    + 1) Check if req.method === "POST"
+    + 2) Then, use a listener on the req for the named event "data"
+    + 3) It's callback will receive the data in the form of buffer i.e. bytes
+    + 4) Convert the data into string 
+    + 5) Convert the data into an js object and stores
+
+- How to add from browser?
+    + Using the fetch function
+    + fetch(<URL>, { method: "POST", body: JSON.stringify({id: 0}) })
