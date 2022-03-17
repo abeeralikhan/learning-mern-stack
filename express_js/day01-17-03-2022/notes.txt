@@ -1,0 +1,57 @@
+[ 17/03/2022 17:29 ]
+
+- Why do we use tools or packages?
+    + Because, developers are lazy. When a problem is solved once, you don't solve it again and
+    again. Instead, you use the solutions already provided to speed the development process
+    of your app
+
+- Why do we use "Express" framework?
+    + Because, it's the most popular, loved, stable, and widespread backend framework in any 
+    language
+
+- When we goto an invalid endpoint, the express itself returns a 404 status. Which makes
+our lifes easier when working with servers
+
+- When we create a file named "server.js", then we directly use "npm start" without
+explicitly mentioning it in the packages.json scripts, and it will work just fine
+
+- What's the real power of express?
+    + Routing
+
+- How do we respont to a endpoint in express?
+    + By using the app methods 
+    + app.METHOD_NAME('<END-POINT>', Route_Handler);
+    - For Example:
+        app.get('/courses', (req, res) => {
+            res.send('Hello World!');
+        });
+
+- What is the route handle?
+    + Route handle is the function which is run against an endpoint
+    + It always take request and response arguments 
+
+- How do we send data to client's request?
+    - By using the send method on the response arguement in the route handler callback
+    - It will automatically set the content-type of the data,
+    that's the beauty of expresss!
+
+- How to make a parameterized route in express?
+    - By using a colon (:), like as following:
+        '/courses/:courseId'
+
+- How to use arguements that are passed in a route?
+    - const arg = request.params.argName;
+
+- Can we send status code explicitly in express? Then how?
+    - Yes, like following:
+        + res.status(200).send('Hello World');
+        + res.status(404).json({id: 0, name:'Abeer'});
+
+- What are development dependencies?
+    + These are dependencies that do not require to run the project
+    + These are only used by developers while in the making of the application
+    + The App is not directly depend on these
+
+How to install dependencies as development dependencies?
+    >> npm install PACKAGE_NAME --save-dev
+
