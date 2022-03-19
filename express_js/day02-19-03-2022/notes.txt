@@ -1,0 +1,64 @@
+[ 19/03/2022 12:16 ]
+
+- What is a middleware?
+    + A middleware is a piece of code that requests and responses are passed and validated through
+
+- Why do we need a middleware?
+    - Following are the core reasons for which we require a middleware:
+        + To verify whether the user is logged in or not
+        + To restrict certain users from accessing certain endponts
+        + To log each request
+
+- How do we create a middleware in express?
+    + We create a middleware in express by using the "app.use()" method
+    + It accepts a callback having three arguements i.e request, response, and next
+    + The next() function will call the next middleware or the requested endpoints
+    + Next() is necessary or the server will hang without it because request won't be processed
+    + The respose will be returned to the next() function after processing which can log after it 
+
+- How do we handle post request in express?
+    + By using "app.post()" method just like the "app.get()" method
+    - While receiving data in json format from client, we use express built-in middleware 
+    to parse into a javascript object, and makes the request.body property equal to that object,
+    like following:
+        ~ app.use(express.json());
+        ~ request.body --> will be used to work with client's posted data
+
+    - If data posted by the client is in a format other than "application/json", it will make the 
+    "request.body" property equal to an empty js object
+
+- Why is it helpful to use named functions instead of the arrow functions in controllers?
+    + Because, if an error occur, then it'll be able to indicate the name of the function where the 
+    error is generating from
+    + Therefore, we get additional information if some error occurs
+
+- How the MVC design pattern is implemented in express?
+    + We make modules for each concern e.g. there will be a controllers folder, models folder, etc
+
+- How the controllers are implemented?
+    + We will make separate modules inside the controllers folder for different endpoints
+    such as:
+        - /courses --> will belong to courses.controller.js module
+        - /courses/1 --> will belong to courses.controller.js module
+
+        - /students --> will belong to students.controller.js module
+        - /students/0 --> will belong to students.controller.js module
+
+    - Following will be the structure of the controllers folder:
+        - controllers
+            + courses.controller.js 
+            + students.controller.js
+
+- How the models are implemented?
+    - We will make separate modules inside the models folder for each model, like following:
+        - courses --> courses.model.js
+        - students --> students.model.js
+
+- Why do we use routers in express?
+    + Basically router separate related urls of a base url 
+    + All related urls of baseUrl will be implemented in a separate file by using 
+    a express router. That router will act just like the app 
+     
+
+
+
