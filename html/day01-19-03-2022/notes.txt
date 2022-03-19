@@ -1,0 +1,48 @@
+[ 19/03/2022 19:50]
+
++ HTML (Hypertext Markup Language) is a markup language that tells web browsers how to
+structure the web pages you visit
+
++ If we wanted the text to stand by itself, we could specify that it is a paragraph by
+enclosing it in a paragraph (<p>) element
+
++ A block-level element appears on a new line following the content that precedes it
+
++ Inline elements are contained within block-level elements, and surround only small parts
+of the document's content (not entire paragraphs or groupings of content).
+An inline element will not cause a new line to appear in the document
+
++ Some elements consist of a single tag, which is typically used to insert/embed something
+in the document
+
++ Attributes contain extra information about the element that won't appear in the content
+
++ <a href="https://www.mozilla.org/" title="The Mozilla homepage" target="_blank">
+A link to my favorite website.</a>
+
+- Boolean attributes can only have one value which is generally the same as the attribute name
+    + These are the attributes without values
+    + <!-- using the disabled attribute prevents the end user from entering text
+    into the input box --> <input type="text" disabled>
+
+- Attributes without quotes
+    + But only single attribute is allowed in this case
+    + <a href=https://www.mozilla.org/>favorite website</a>
+
+- Anatomy of an HTML document
+    <!DOCTYPE html>
+    <html> --> It is sometimes known as the root element
+    <head>
+        <meta charset="utf-8">
+        <title>My test page</title> --> is also used to describe the page when it is bookmarked
+    </head>
+    <body>
+        <p>This is my page</p>
+    </body>
+    </html>
+
++ In HTML, the characters <, >,",' and & are special characters. They are parts of the HTML
+syntax itself. So how do you include one of these special characters in your text?
+
++ <!-- I am a comment -->
+

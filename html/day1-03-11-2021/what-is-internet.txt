@@ -1,7 +1,0 @@
-The Internet
--Global network of interconnected computers that communicate via TCP/IP.
--Network of networks.
-
-The Web
--The World Wide Web is an information system where documents and other resources are available over the Internet.
--Documents are transferred via HTTP.
