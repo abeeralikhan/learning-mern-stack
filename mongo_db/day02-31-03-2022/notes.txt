@@ -1,0 +1,106 @@
+~ Understanding the Basic & CRUD Operations
+	+ Basics about collections & documents
+	+ Basic Data Types
+	+ Performing CRUD Operations
+
+- Understanding Databases, Collections & Documents
+	+ Database --> A database
+	+ Collection --> A table is SQL terms
+	+ Document --> Maybe a row of data in SQL terms
+
++ Shell allows to write queries or we can write them using drivers
+
+- In MongoDB documentation, there are commands for shell, and as well for specific drivers that we can run
+	+ Also contains best practices
+
+- How do we create new databases?
+	+ We can create either explicitly or implicity
+	>> use DB_NAME // will switch to a database that exists or don't exitst
+	[ Note: If you switch to a database that do not exist then it will be created automatically once you start 
+	populating it ]
+
+- How do we create and use collections?
+	+ We use collections by referencing to the database as db
+	+ We refer to database as db just like we refer to the object itself using self in python
+	>> db.COLLECTION_NAME // will create a collection if does not exist or use the existing one
+	[ Note: Once you start creating collections, database will be create and will be visible using the 'show dbs' 
+	command, otherwise it won't be visible if you don't populate it ]
+
+- Query Structure
+	+ DB.COLLECTION_NAME.QUERY_COMMAND
+
+- What representation do we use to represent a document?
+	+ Curly braces ({})
+
+- In what form does a document consist data in?
+	+ Key-Value pair
+
+- In what data structure does JSON consist all the documents in?
+	+ Array 
+	
+- What are some common data types in JSON format?
+	+ String, Number, and Boolean
+
+- Every documented inserted into the mondoDB database gets a "Unique ID" with the datatype "ObjectID"
+	+ Example
+		"_id": ObjectId("eejgnsjgnsjgee234")
+
++ Id can also be used for sorting because maybe it consist of some timestamps
+
+- What does BSON stand for?
+	+ Binary JSON
+
+- What is a BSON format?
+	+ MongoDB drivers convert JSON data into binary format for storing that's why mongodb is so fast at processing huge amounts
+	of data
+
+- Can we give ID's to each document? Then, how?
+	+ Yes, we can assign ID's to documents
+	+ Each ID should be unique
+	+ We always assign ID's using "_id" key
+
+- CRUD Operations
+	- Create 
+		+ insertOne(data, options)
+		+ insertMany(data, options)
+	- Read 
+		+ find(filter, options)
+		+ filterOne(filter, options)
+	- Update
+		+ updateOne(filter, data, options)
+		+ updateMany(filter, data, options)
+		+ replaceOne(filter, data, options) // replace the entire document with a new one
+	- Delete
+		+ deleteOne(filter, options)
+		+ deleteMany(filter, options)
+
+- How to delete a single document?
+	+ Using db.deleteOne(filter) command
+	+ Here, filter an object, which consist of key-value pair of the referencing to the document to be deleted
+	- Example:
+		>> db.COLLECTION_NAME.deleteOne({name: 'XYZ'})
+	[ Note: This will delete the first matching document, not all of the documents ]
+
+- How to insert more than one documents at once?
+	>> db.COLLECTION_NAME.insertMany([{...}, {...}, {...}])
+
+- How to delete more than one docuemnts at one?
+	+ First, select a key that many documents have common value of, then use that key to delele many documents
+	>> db.COLLECTION_NAME.deleteMany({key: 'COMMON-VALUE'})
+
+- How to delete all documents?
+	+ By passing an empty object as a filter inside the deleteMany command
+	>> db.COLLECTION_NAME.deleteMany({})
+
+- How do we use mongoDB reserved keywords to perform operations?
+	+ Using a dollar sign
+
+- How update or add new values in a document?
+	+ We use mongoDB reserved keyword $set to do so
+	>> db.COLLECTION_NAME.updateOne({ename: 'Abeer'}, {$set: {sal: 100000, newKey: newVal}})
+
+- How to update all documents?
+	+ By passing an empty object as a filter
+	+ db.COLLECTION_NAME.updateMany({}, {$set: {...}})
+		
+	
