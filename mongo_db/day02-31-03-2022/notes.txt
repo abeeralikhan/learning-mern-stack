@@ -102,5 +102,7 @@
 - How to update all documents?
 	+ By passing an empty object as a filter
 	+ db.COLLECTION_NAME.updateMany({}, {$set: {...}})
+
+
 		
 	
