@@ -1,0 +1,29 @@
+[ 01/04/2022 23:05 ]
+
+- How to write simple fetching queries?
+	>> db.COLLECTION_NAME.find({anyKey: searchedValue}) // will return all documents which lies under this finding condition
+
+- How to write little complex query like price less than 1200?
+	>> db.product.find({price: {$lt: 900}})
+
+- What's the difference between update() & updateMany?
+	+ Update works just like updateMany, but instead of updating a single property, it replaces the entire document
+	>> db.products.update({name: 'Hair Trimmer'}, {name: 'Toshiba Hair Trimmer', price: 1500})
+
+- How projection is done in mongodb or how specific attributes are fetched?
+	>> db.product.find({}, {name: 1, _id:0}) // 1 represents we want to fetch only that property
+						 // 0 is used to explicity ignore getting _id 
+
+- What is a cursor object?
+	+ When we run find() command on a collection, it returns the cursor for that object that is poiting at the documents
+	+ Suppose there are 2 million records in the database, then running find command will take alot of time if it 
+	was returing all the records at once instead of the cursor
+	+ db.products.find() ---> Cursor Object
+
+>> db.products.find().toArray() // all the documents in array format
+>> db.products.find().forEach((doc) => {printjson(doc)}) // another way to fetch all docs iteratively without exhausting the buffer
+
+- How do we access embedded documents or arrays?
+	>> db.products.find({'details.status': 'Active'})
+	>> db.products.findOne({name: "Hair Trimmer"}).price
+ 
