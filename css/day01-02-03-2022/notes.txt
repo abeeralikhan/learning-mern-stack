@@ -1,0 +1,35 @@
+[ 02/04/2022 16:30 ]
+
+~ Chap 0: What is CSS?
+
++ How to include a stylesheet in html?
+    1) Using the html tag "link" (self-closing tag)
+    2) set rel="stylesheet"
+    3) set href="<PATH-TO-STYLESHEET>"
+
+~ Chap 1: Creating first CSS Website
+
+- Difference between ID and Class attributes
+    + <div id="unique_id" class="C1 C2 C3">Hello World</div>
+
+- Why do we group multiple css selectors?
+    + To apply same properties on multple elements using css selectors
+    - Example:
+        h1, .class-select, #id-select {
+            background: red;
+        }
+
+- How to select class of an speficic element not all classes?
+    + elemet.class { ... }
+    + img.border-color {
+        border-color: red;
+    }
+
+- How to write comments in CSS?
+    + /* my comment */
+
+- CSS reference for properties?
+    + https://developer.mozilla.org/en-US/docs/Web/CSS/Reference
+
+
+

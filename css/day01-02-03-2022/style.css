@@ -1,0 +1,31 @@
+body {
+    background-color: orange;
+}
+
+div.container {
+    margin: 50px 50px;
+}
+
+.container {
+    padding: 0 30px;
+}
+
+#first {
+    color: navy;
+}
+
+#second {
+    color: crimson;
+}
+
+.red-bg {
+    background-color: red;
+}
+
+.blue-bg {
+    background-color: blue;
+}
+
+h3, p, span {
+    font-size: 2em;
+}
