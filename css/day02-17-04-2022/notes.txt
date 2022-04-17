@@ -1,0 +1,42 @@
+[ 15/04/2022 18:21 ]
+
+~ Chapter 2: Colors & Background
+
++ We use classes almost everywhere and our goal is to reuse them as much as possible
+
+- To set backgroud color
+    + backgroud-color: red;
+
+- To set foreground color
+    + color: white;
+
+[ 17/04/2022 16:00 ]
+
++ m0+p0
+
+- Types of color values:
+    + rgb --> rgb(200, 98, 70)
+    + rgba
+    + hex --> #ff7180
+    + hsl --> hsl(8, 90%, 63%)
+    + hsla
+
++ backgroud-image: url('./image.png');
+
+- backgroud-repeat
+    + repeat-x
+    + repeat-y
+    + no-repeat
+
+- backgroud-size
+
+- backgroud-position
+
+- backgroud-attachment
+    + Fixed --> Background image wont move on scrolling
+
+- The backgroud shorthand:
+    + backgroud: color image repeat attachment position;
+    
+
+
