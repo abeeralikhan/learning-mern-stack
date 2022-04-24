@@ -1,0 +1,72 @@
+[ 24/04/2022 20:38 ]
+
+~ Improving Node Performance
+
++ Node is ideal for making non-blocking operations e.g. making requests to servers that are
+hosted somewhere on internet
+
++ We use some approaches to deal with blocking servers 
+
++ Code that is neither requesting for file system operations nor performing http requests,
+blocks the event loop. 
+
+- When an end-point has some blocking code that blocks the event loop, other clients requesting
+some different end-points will also have to wait till previous requests are fulfilled by the server
+    + And, THATSSS A PROBLEMMM!!!
+
+- PROBLEM: BLOCKING CODE IS SLOWING DOWN THE ENTIRE SERVER
+    - There needs to be a better way of handling this so that our server wont grind to a
+    complete halt
+
+- What are some real life examples of blocking functions that slow down the entire server?
+    + JSON.stringify() --> Object to string
+    + JSON.parse() --> String to object
+    + [1, 2, 3, 4, 5].sort() --> For very large arrays or objects
+    + Functions from cryptography
+
+- Response Times: The 3 Important Limits
+    + <0.2 second or <200ms --> Perceived as instantaneous - That's what we want
+    + 1 second or 1000ms --> Start of progressive decline
+    + 10 seconds or 10000ms
+
+    [ Research says after 3 seconds of unresponsiveness, 73% users are lost ]
+
++ AIM: Performant servers and low response time
+
+- SOLUTION: When servers are loaded with requests, we need to divide that load
+    + Problem: But, how? Because JS and Node JS runs on single thread 
+    - Solution:
+        + Run multiple node processes side by side allowing them to share the work amongst
+        themselves like a team working together towards a common objective 
+        + Make multiple copies of your node process on which the server is running on, and
+        those will accomadate all the requests and balance out the load
+
+- APPROACH 01: The Node Cluster Module
+    - What does the Node Cluster Module do?
+        + It allows you to create copies of your node processes that each run your server code side
+        by side in parallel
+
+    - How does the Node Cluster Module work?
+        + It has function named "fork()" which makes a copy of your main process however many
+        time you want
+        + Copies of main process are known as worker processes
+
+    - How does the worker processes share request loads?
+        + Using the "Round Robin" approach
+        [ Note: Windows may not support the Round Robin approach ]
+
+    + Round Robin approach is one the fairest one in sharing requests equally to the worker processes
+    even compared to fancy approaches 
+
+    - How does the Round Robin approach work?
+        + First request is assigned to the first worker
+        + Second request is assigned to the second worker
+        + Third request is assigned to the first worker and so on....
+        + Requests are assigned in a circular array manner
+
+
+
+
+
+
+
