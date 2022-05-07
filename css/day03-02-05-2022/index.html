@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>The CSS Box Model</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cardbox">
+            <img class="c-img" src="./image.png" alt="Elon Musk">
+            <p class="c-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quos alias nam omnis?</p>
+            <input type="button" value="Open">
+        </div>
+    </div>
+</body>
+<script>
+    const container = document.querySelector('.container');
+    const div = document.createElement('div');
+    const image = document.createElement('img');
+    const text = document.createElement('text');
+    const inptButton = document.createElement('input');
+
+    text.textContent = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem quos alias nam omnis?';
+
+    div.classList.add('cardbox');
+    image.classList.add('c-img');
+    text.classList.add('c-text');
+    
+    image.setAttribute('src', './image.png');
+    image.setAttribute('alt', 'Elon Musk');
+    inptButton.setAttribute('type', 'button');
+    inptButton.setAttribute('value', 'Open');
+
+    div.append(image, text, inptButton);
+    container.append(div);
+</script>
+</html>

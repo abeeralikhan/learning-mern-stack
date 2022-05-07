@@ -1,0 +1,31 @@
+[ 02/05/2022 21:24 ] 
+
++ Total height = height + top/bottom padding + top/bottom border + top/bottom margin
+
+- Ways of setting margin:
+    + margin-top, margin-bottom, ..
+    + margin: top right bottom left;
+    + margin: top-bottom left-right;
+
+- Setting border:
+    + border-width, border-style, border-color, border-radius // 1
+    + border: width color style;
+    + border-style: top right bottom left; // 4
+    + border-style: top-bottom left-right; // 2
+    + border-style: top left-right bottom; // 3
+
+- Margin Collapse:
+    + When two margins from different elements overlap, the equivalent margin is the greater
+    of the two, this is called margin collapsed
+
+- Box Sizing:
+    + It sets how the total width and height of an element is calculated
+    + Can be 'content-box' or 'border-box'
+
+    + content-box --> When I say width 100%, then it does not include padding and border
+                      it includes only content
+                      content - padding - border
+
+    + border-box --> When I say width 100%, then it also includes padding and border
+                     i.e. content should not go out from the box
+                     content + padding + border
