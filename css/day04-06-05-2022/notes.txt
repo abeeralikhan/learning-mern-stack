@@ -1,0 +1,36 @@
+[ 06/05/2022 22:19 ]
+
+~ Chapter 4: Fonts & Display
+
+- What is the display property?
+    + Is used to determine whether an element is treated as a block/inline element
+    + And determines, the layout used for it's children (flexbox, grid, etc)
+
+- Display: inline
+    + Takes only the space required by the element
+    + No linebreaks before and after
+    + You can not set width/height, margin, and padding
+    + You can set margin/padding of left and right
+
+- Display: block
+    + Takes full space available in width and leaves a newline before and after the element
+
+- Display: inline-block
+    + Similar to inline, but setting height, width, margin, and padding is allowed
+    + Elements can sit next to each other
+
+- Display: none
+    + Element will be removed from the dom at the time this property is active 
+    + It's space is not blocked
+
+- Visiblity: hidden
+    + The element is hidden but it's space is reserved
+
+- Text-align property
+    + Aligns text horizontally
+
+- Text-decoration
+    + Put different lines on the text
+
+- Text-transform
+    + To uppercase or lowercase texts
