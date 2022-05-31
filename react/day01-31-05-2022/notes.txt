@@ -1,0 +1,34 @@
+[ 31/05/2022 23:56 ]
+
+~ Section 1: A taste of React
+
+- What is the main point of react?
+    + To build components
+    + They often make it easier to build modular applications
+
+- What is a component?
+    + Component = JavaScript logic + HTML + CSS
+
++ A react application containts a ton of components that are composed together
+
++ Goal: Separation of Concerns
+
++ React is a tool that helps us build reuable components
+
+- What's the difference between a framework and a library?
+    + Larger libraries are framework
+    + You plug libraries into your code
+    + Whereas, you plug your code into a frame 
+    + Frameworks are "opiniated", "like you should do things in particular way for them to work"
+
+- Is react a framework or a library?
+    + When used on it's own, it's a "Library"
+    + But, when used with other react tools such as react-router, webpack etc, its a "Framework"
+    + The standard "React Ecosystem" is a framework
+
+- Why react is not a framework?
+    + Because it doesnt force you to do things out of the box
+
++ Components are the building blocks of react
+
++ You can pass data or methods to the components or between the components
