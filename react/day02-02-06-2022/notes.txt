@@ -1,0 +1,11 @@
+[ 02/06/2022 20:30 ]
+
++ React exist to help you make componets, have those components communicate, pass data,
+pass information to one another
+
+- What's the hardest part of react?
+    + What to make a component
+    + How many pieces you'll break it down into
+
+
+
