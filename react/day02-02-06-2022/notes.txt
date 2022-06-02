@@ -7,5 +7,45 @@ pass information to one another
     + What to make a component
     + How many pieces you'll break it down into
 
++ Sometimes we reuse of our components, and sometimes we just make them and not reuse them
 
+- Ways of creating a server:
+    + Live server
+    - Python server
+        >> python -m http.server
 
+- Why do we need a server to run react?
+    + Because of Babel
+
+- What is Babel used for?
+    + It trasn-compiles the funcky looking html syntax (jsx) to javascript
+
+- Ways of making a component:
+    - Through, 
+        + a class,
+        + or, a function,
+
+- What are the requirements of a class component?
+    1. It must have a "render()" method
+    2. And, it must return something
+
++ Historically: Function components --> dumb 
+
+- We import JavaScript files in out html files signifying files type to be "text/jsx" 
+
++ We can only return a single tag by react component
+
+- But, to return more than one tag, we use
+    1. parenthesis '()'
+    2. and encode them in another div
+    Example:
+        return {
+            <div>
+                <h1>My name is Abeer</h1>
+                <h2>I'm 21 years old</h2>
+            </div>
+        }
+
+- Difference between function components and class components:
+    + Function used to be very simple
+    + But, with the inroduction of Hooks, we can now write full-featured function components
