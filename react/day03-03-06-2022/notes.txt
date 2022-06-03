@@ -21,3 +21,11 @@
     + By, simply using curly braces ( {} )
     - We can write JavaScri(pt code inside these curly braces
         <h1> Count: { getCount() } </h1>
+
+- Standard React App Layout
+    1. Make separate .js files of all components
+    2. Make a top-level file i.e App.js where you'll use your components, and this
+        file will be rendered on the html
+    3. Include new component files in the html before App.js 
+
+    
