@@ -1,0 +1,23 @@
+[ 03/06/2022 18:00 ]
+
+- What JSX stands for?
+    + JavaScript Syntax Extension
+    + JavaScript + XML
+
+- What are the basic Rules of JSX?
+    + An element must have a closing tag
+    + If an element is self-closing, it must end with a '/'
+
++ JSX is more stricter then HTML
+
+- Is it necessary to use JSX?
+    + Not really, for returning a simple H1 tag you could use,
+        React.createElement('h1', null, 'Hello World!')
+
+    + But, as number of tags increase, it will become messy!
+    + So, JSX makes our life a whole lot easier.
+
+- How we can embed JavaScript in JSX?
+    + By, simply using curly braces ( {} )
+    - We can write JavaScri(pt code inside these curly braces
+        <h1> Count: { getCount() } </h1>
