@@ -1,0 +1,40 @@
+[ 04/06/2022 21:30 ]
+
+- Why props are used for?
+    + To pass data from parent component to child component
+
+- How data is send from parent components to child using props?
+    + <CompName propName=DATA>
+
+- How props are accessed from child components?
+    + Using "this.props.propName"
+
++ Props are immutable i.e you cannot s update their values or add more props to it from the child component
+
+- How we can pass data other than string through props?
+    + <CompName propName={99}>
+    + <CompName propName={[1, 2, 3, 4, 5]}>
+    + <CompName propName={{name: "Abeer", rollNo: "19B-078-SE"}}>
+    + <CompName propName}> // propName=true
+    // Note: To pass true values, just right the prop name and it will passed as true
+
+- How do we implement a loop in jsx?
+    + By using maps method and returning lis
+
+- How to setup default props?
+    + Set class propery "defaultProps" equal to an object that consist of default props values
+    - Example
+        static defaultProps = {
+            prop1: "Value",
+            prop2: "Value"
+        }
+
+[ Following questions will be answered tomorrow ]
+
+- What are the two ways of styling htmls in React?
+
+- Why do we have to write className instead of class while styling?
+
+- Do we make a class same as component name?
+
+- How to have different styles for different outputs? (win/lose)
