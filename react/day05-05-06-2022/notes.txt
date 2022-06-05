@@ -1,0 +1,101 @@
+[ 05/06/2022 18:45 ]
+
+- What are the two ways of styling htmls in React?
+    - Through,
+        1. CSS Classes
+        2. Passing an object to inline style property of an element
+
+- Why do we have to write className instead of class while styling?
+    + Because, we are making html tags inside of JavaScript, and the keyword "class" 
+    clashes with JS reserved for making classes i.e class. Therefore, we use className instead of 
+    class in js.
+
+- Do we name the class in css same as the component name?
+    + Yes
+
+- How to have different styles for different outputs? (win/lose)
+    + By passing different objects to the inline style attribute based on certain conditions
+
+~ Section 4: Introducing Create React App
+
+- Why do we use "create react app"?
+    + To initialize react projects
+    + It gives us our app's foundational skeleton to work with
+    + It initializes and configure all the files for us 
+
+- Two main ways of using create-react-app:
+    1. NPX (just use once) 
+        >> npx create-react-app my_app
+
+    2. NPM (install, then use)
+        >> npm i -g create-react-app
+        >> create-react-app my_app
+
+- create-react-app structure:
+    - public
+        + index.html
+
+    - src --> contains all of the components
+        + App.jss
+        + components...
+
+- What is Webpack?
+    + CRA is built on top of "Webpack"
+    - Its a JS utility that:
+        - Enables module importing/exporting
+            + Packages up all CSS/Images/JS into a single file for browser
+            + Dramatically reduces # of HTTP requests for performance
+        + Hot Reloading: automatic reloading of the server once a file has been updated
+        + Enables easy testing & deployment
+
+- ECMA2015 Modules:
+    + import './file' --> it imports someting from a file relative to your current file 
+    + import 'file' --> it imports a package from the node_modules
+
+- How do you export functions?
+    + export {
+        func1,
+        func2,
+        func3
+    }
+
+- What export default is used for?
+    + To set a default export
+    + If, you dont specify what you need, it will be exported
+    + Note: You dont need curly braces to import defaults
+
+- Explain "import React, { Component } from 'react';"
+    + Here, "React" is the default export
+    + Whereas, you're specifying a specific export i.e "Component" using object destructor 
+
+- There are three Create React App Conventions that every React Developer must follow:
+    1. Create separate files for components and file name should be same as the component name`
+        Example:
+            Car.js --> Car component
+            Engine.js --> Engine component
+
+    2. Components should always extend to the Component class (imported from 'react')
+        And, your component should be the default export of the file
+
+    3. Top level object, or entry point of your application should be the App.js file 
+
+- CSS/assets conventions for create-react-app:
+    1. Make CSS files for each component, keeping the file name as the component
+        Example:
+            Engine.js
+            Engine.css
+
+    2. Import css files at the top of every component file
+    3. Apply css to the top level div of every element
+        Example:
+            return (
+                <div className="Engine">
+                    ........
+                </div>
+            );
+
+    4. Store images in the src/ folder with the componets
+        + Make a images folder to declutter the src/ folder
+
+
+
