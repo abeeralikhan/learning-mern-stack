@@ -96,6 +96,8 @@
 
     4. Store images in the src/ folder with the componets
         + Make a images folder to declutter the src/ folder
+       
+[ ENDED AT 23:30 ]     
 
 
 
