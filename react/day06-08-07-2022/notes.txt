@@ -1,0 +1,4 @@
+[ 08/07/2022 15:30 ]
+
+- How do we start the react server?
+    >> npm start
