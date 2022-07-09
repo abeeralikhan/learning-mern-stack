@@ -17,9 +17,11 @@ class Pokegame extends Component {
     render() {
         const { pokemons } = this.props;
         const temp_pokemons = pokemons;
+
         const getRandomNumber = (n) => {
             return Math.floor(Math.random() * n) + 0;
         }
+
         const dex1 = [];
 
         for (let i = 0; i < 4; i++) {
@@ -29,10 +31,21 @@ class Pokegame extends Component {
         }
 
         const dex2 = temp_pokemons;
+
+        const calcualte_total_exp = dex => {
+            return dex.reduce((total, current) => {
+                return total+=Number(current.base_experience);
+            }, 0);
+        };
+
+        const dex1_total_exp = calcualte_total_exp(dex1);
+        const dex2_total_exp = calcualte_total_exp(dex2);
+
+        console.log(dex1_total_exp, dex2_total_exp);
         return (
             <>
-                <Pokedex pokemons={dex1}/>
-                <Pokedex pokemons={dex2}/>
+                <Pokedex pokemons={dex1} total_exp={dex1_total_exp} isWinner={dex1_total_exp>dex2_total_exp}/>
+                <Pokedex pokemons={dex2} total_exp={dex2_total_exp} isWinner={dex2_total_exp>dex1_total_exp}/>
             </>
         )
     }

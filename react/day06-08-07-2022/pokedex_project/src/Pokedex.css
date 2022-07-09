@@ -1,0 +1,26 @@
+.Pokedex {
+    text-align: center;
+}
+
+.Pokedex-verdict {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: -7px;
+    margin-top: 25px;
+}
+
+.Pokedex-total-exp {
+    font-size: 0.8rem;
+}
+
+.Pokedex-header {
+    margin-bottom: 21px;
+}
+
+.Pokedex-win {
+    color: green;
+}
+
+.Pokedex-lose {
+    color: red;
+}
