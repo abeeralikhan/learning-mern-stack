@@ -1,0 +1,43 @@
+[ 09/07/2022 ]
+
+- What is state?
+    + The state an element or object is currently in 
+    + State of an element can be changed
+    + We make decisions based on the state of an element
+    - For Example:
+        An can be read or unread state, based on its state we chose how to display it. An unread email 
+        is highlighted.
+
+- What is React State?
+    + A value initialized inside the component that will be changed from inside the component
+
+- What is the difference between states and props?
+    + Props are immutable i.e they can't be changed from inside the component
+    + Whereas, states can be changed 
+    + Props are passed outside the component
+    + Whereas, states are initialized from inside the components
+
+- How states are represented in react?
+    + In react, states are represented as an object which consist of all the states 
+
+- How do we initialize states in react?
+    + React States are always used in class based components
+    + They are initialized as the component is created, therefore they are initialized inside the constructor
+    - Syntax of react state is given as:
+    
+        class Game extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    score: 0,
+                    playerName: 'Abeer Ali Khan'
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>{ this.state.playerName } score is { this.state.score }</h1>
+                    </div>
+                );
+            }
+        }
