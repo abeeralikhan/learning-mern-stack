@@ -1,0 +1,28 @@
+[ 10/07/2022 13:30 ]
+
+- What's the difference between super() and super()?
+    + super() on it's own runs the constructor of it's parent class
+    + super(props) runs the constructor of its parent class as well and pass props in it
+    + The main difference is that with just super() you can this.props everywhere except for the class' constructor
+    + To use this.props in the class' constructor you have to use super(props)
+
++ You never directly manipulate the states in react 
+
+- How to change states in react?
+    + There're many ways to manipulate states in react, 
+    but one of the commonly used is "this.setState()" method.
+    + this.setState() won't run either in constructor or render method
+    + It accepts an object of the updated key value pair, and won't override the other values 
+    already present in states
+
+- How do we bind functions to click events in React?
+    + <Button onClick={ this.toRun }></Button>
+
+- What's the one problem while specifying "this" in html elements?
+    + We have to bind the function calls first in the constructor for them to run
+    + this.toRun = this.toRun.bind(this);
+
+- The "State As Props" Design Pattern
+    + This means that states of parent components are passed as props into the child components
+
++ Parents are often more stateful than their children
