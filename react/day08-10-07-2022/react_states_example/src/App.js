@@ -9,6 +9,7 @@ class App extends Component {
     return (
       <div className='App'>
         <Clicker />
+        <Rando maxNum={20}/>
       </div>
     );
   }
