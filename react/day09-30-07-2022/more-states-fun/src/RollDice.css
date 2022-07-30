@@ -3,3 +3,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.RollDice-button {
+    display: block;
+    margin: auto;
+    font-size: 2em;
+    padding: 0.25em 0.6em;
+    background-color: darkblue;
+    color: white;
+}
