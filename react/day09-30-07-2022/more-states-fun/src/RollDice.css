@@ -4,11 +4,19 @@
     align-items: center;
 }
 
-.RollDice-button {
+.RollDice button {
     display: block;
     margin: auto;
-    font-size: 2em;
-    padding: 0.25em 0.6em;
-    background-color: darkblue;
+    width: 15em;
+    padding: 1.5em;
+    border: 0px;
+    background-color: black;
+    border-radius: 10px;
     color: white;
+    margin-top: 3em;
+}
+
+.RollDice button:hover {
+    background-color: darkslateblue;
+    cursor: pointer;
 }

@@ -3,3 +3,6 @@
 
 - Parent components are statefull, whereas child components are stateless
 
+
+
+

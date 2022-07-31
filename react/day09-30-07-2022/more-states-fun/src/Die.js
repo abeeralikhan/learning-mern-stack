@@ -1,7 +1,5 @@
 import { Component } from "react";
 import './Die.css';
-
-
 class Die extends Component {
     static defaultProps = {
         diceNumber: 1,
@@ -10,6 +8,11 @@ class Die extends Component {
         const diceNum = this.props.diceNumber;
         const diceClass = this.getClassCode(diceNum);
         const classes = ['Die', 'fas', diceClass];
+
+        if (this.props.toWobble) {
+            classes.push('Die-wobble')
+        } 
+
         return (
             <>
                 <i className={classes.join(' ')}></i>
