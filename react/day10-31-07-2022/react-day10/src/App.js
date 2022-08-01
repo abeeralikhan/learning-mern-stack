@@ -3,6 +3,7 @@ import { Component } from 'react';
 // import DisplayEmoji from './DisplayEmoji';
 // import CoinFlipper from './CoinFlipper';
 import ColorConainter from './ColorContainer';
+// import ColorBox from './ColorBox';
 
 class App extends Component {
 

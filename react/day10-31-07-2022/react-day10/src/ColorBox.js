@@ -1,20 +1,38 @@
 import { Component } from "react";
+import './ColorBox.css'
+import { choice } from './helpers';
 
 class ColorBox extends Component {
     static defaultProps = {
-        boxColor: 'black'
+        allColors: ['red', 'green', 'blue', 'yellow', 'black', 'orange', 'brown']
+    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            color: choice(this.props.allColors)
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    pickColor() {
+        let newColor;
+        do { // do-while loop is used to eliminate the picking up the same color again
+            newColor = choice(this.props.allColors);
+        } while(this.state.color === newColor)
+
+        this.setState({ color: newColor });
+    }
+
+    handleClick() {
+        this.pickColor();
     }
 
     render() {
-        const styles = {
-            width: '200px',
-            height: '200px',
-            backgroundColor: this.props.boxColor,
-        }
-
         return (
-            <div className="ColorBox" style={ styles }></div>
-        )
+            <div className="ColorBox" style={{ backgroundColor: this.state.color }} onClick={ this.handleClick }>
+
+            </div>
+        );
     }
 }
 
