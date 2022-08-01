@@ -1,0 +1,71 @@
+[ 31/07/2022 16:00 ]
+
+~ Section 8 - React State Patterns
+
+- Goals of this Section
+    + Learn how to update state based off of existing state
+    + Properly manage state updates for mutable data structures [arrays, objects, etc]
+    + Discuss best practices for modeling state and designing components
+
+- Goal #01: Setting State Using State
+	- Inconsistent way
+		this.setState( { value: this.state.value + 1 } );
+		Reason: 
+			React will batch the similar calls as they are async, so some calls can be missed
+
+	- Better way - Using a callback
+		this.setState( (curState) => {
+			value: curState.value + 1
+		} );
+
+	- More improved way - Using a dedicated method to update state
+		incrementSate(curState) {
+			return { value: curState.value + 1 };
+		}
+		this.setState( incrementState )
+
+- Goal #02: Mutable Data Structures in State
+	- Components may have an array of objects
+		this.state = {
+			todos: [
+				{ task: 'to wash dishes', done: false, id: 0 },
+				{ task: 'to do homework', done: true, id: 1 },
+			]
+		}
+
+	- Inconsistent way:
+		Updating the current mutable data structure
+
+	- Better way:
+		1) Create a copy of existing data structure with the intended values update
+		2) Replace that mutable data structure with the old one
+
+- In react environment, pure functions such as .map, .filter, .reduce are your friends
+	+ So is the ...spread operator
+
+[ 02:20 AM ]
+
+- Goal #03: Designing the state (best practices)
+
+- #01 Minimizing State
+
+- KEEP YOUR STATE AS SMALL AS POSSIBLE!!!!!	
+
+- It is not always clear what components to make, and which componets control which
+state. This skill will become better with time and practice
+
+- In react, you want to try to put as little data in state as possible
+
+- Litmus test for state:
+	+ 1) Does x change? If not, x should not be part of state. It should be a prop
+	+ 2) Is x already captured by some other value y in state or props? Derive it from there instead	 
+
+- #02 Downward data flow
+
+- PARENTS SHOULD BE STATEFULL, AND CHILD SHOULD BE STATELESS!!!
+
+- EASIER, DEBUGGING!!!!
+
+- Because, in the application the data which is displayed is not correct. Therefore,
+you will know the parents have all the data which is passed downward, and the process of
+debugging becomes easier. 
