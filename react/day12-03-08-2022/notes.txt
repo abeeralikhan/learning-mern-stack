@@ -1,0 +1,61 @@
+[ 03/08/2022 18:20 ]
+
+~ Section 10 (Cont.)
+
+-- Passing functions to child components
+    + A very common pattern in React
+    
+    + The idea: children are often not stateful, but need to tell parents to change state.
+
+    + How we send data "back up" to a parent component
+
++ We pass functions to the child components and call them from the child components
+
+- How data flows:
+    1) A parent component defines a function
+    2) The Function is passed as a prop to a child component
+    3) The child component invokes the prop
+    4) The parent function is called, usually setting "new state"
+    5) The parent component is re-rendered along with its children
+
+- Steps:
+    1) Define a function in parent with an arguement to update the state to the new value
+    2) Pass that function inside a prop to the child component without executing it
+    3) Make a function inside the child component e.g. handleClick() inside you're gonna execute
+    the parent function by passing an arguement into it
+    4) Finally, bind that handleClick() function to a button or an element so it can be triggered
+
+- This pattern alows us to maintain downward data flow where we dont have state in children components
+
+-- Parent-Child Method Naming
+
+- Naming Convention
+    + You can call these handlers whatever you want - React doesn't care!
+
+    - For consistency, try to follow to "action/handleAction" pattern:
+        - In the parent, give the function a name corresponding to the behavior
+            For example:
+                remove, add, open, toggle, etc
+
+        - In the child, use the prefex "handle" with the parent function name
+            For example:
+                handleRemove, handleAdd, handleOpen, handleToggle, etc
+
+-- React Keys
+
+- Used when mapping items into components
+
+- Lists and Keys
+    + Keys help React identify which items have changed, are added, or are removed
+    + Key is a special "string" attr to include when creating lists of elements
+
+- Adding keys
+    + It should be unique
+
+- Picking a key:
+    + Best way - use string that uniquely identifies item among singlings
+
+- Last resort:
+    + You may use the iteration index as a key as a last resort
+    
+    + If you're gonna remove items from your list, then don't use indexes
