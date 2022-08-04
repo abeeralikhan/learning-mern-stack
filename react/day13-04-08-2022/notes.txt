@@ -1,0 +1,41 @@
+[ 04/08/2022 18:00 ]
+
+~ Section 12: Lights Out Game
+
+-- Learnings from the starter code
+
++ If there's a repeated task done from inside a function, dont make a sibling function, 
+instead make a child function for it. 
+
++ Or maybe, create a child function for SOCs to let the reader know what your function is exactly doing
+
++ IMPORTANT: Keep your render() method as clean as possible, less clutter.
+
+- If you're rendering components using a loop, dont directly render them in the render() { return(..); }
+    + Instead, make a separate function only for generating components and call it in the render() method
+    + This increases readability of the code 
+
+- Code, especially in react, is writted differently. 
+    + You don't really need to update anything in the components, they're gonna be rendering as they are
+    + You just update your states, and the components render differently
+    + You have to make your components in such a way, that depends on state
+    + STATES plays a crucial role in react
+    + Designing components with respect to states is an art which will only come with practice 
+
+- The solution that the instructor uses totally different from the I image in my head
+    + The instructor surely has more knowledge then me
+    + That knowledge will only come to me by thinking out design, solution, practice, learning best practices,
+    and analyzing other people code.
+    + If a professional implements a feature, how does he do it? How mine is different from him?
+    What can I learn from his solutions.
+
++ THINK AHEAD, AND CONSIDER EVERY POSSIBILITY FIRST BEFORE WRITING THE CODE
+
+- We can return  more than one time in the render function.
+    + If the winning condition of the game has met, put a condition in the beginning and return early
+    + There's no need to run the rest of the code in this scenario
+
+- We can use a function to populate states.
+    + Simple return a set of generated values from the function and in the set with key, execute it
+
+
