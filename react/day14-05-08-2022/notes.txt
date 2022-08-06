@@ -1,0 +1,83 @@
+[ 05/08/2022 19:30 ]
+
+~ Section 13: Forms in React
+
+- Goals
+    1) Build forms with react [ a little differnt as compared to vanilla js ]
+    2) Understand what controlled components are
+
+-- React Forms
+
+- The forms elements such as textarea, input, etc.. Have their own internal state, where they store user data
+    + But, the problem is, we don't know what user has writted until he submits the form
+
+- To solve above problem, we use controlled components
+    + We use react state for every single input element. 
+    + Input elements output the state
+    + Whenever user writes something, the state will be updated. Hence, that is displayed to him
+    + "onChange={ }" event handler is used, which is triggered when the input is updated
+    + It calls a function, which receives the event object.
+    + "event.target.value" will give what user has typed, and we'll set the new state using "setState()"
+
+- Use evt.preventDefault() method to stop the page from refreshing once the form has been submitted
+
+-- ES2015 Review
+
+- Computed Property Names
+    - ES5
+        var catData = {};
+        var microchip = 123123123;
+        catData[microchip] = "Blue Steele";
+
+        + Explanation: In above syntax, instead of tying the number, we're using the variable name to set the key
+
+    - ES2015
+        var microchip = 123123123;
+        let catData = {
+            [microchip]: "Blue Steele"
+        }
+
+        + Explanation: typing dynamic keys
+
+-- Handling multiple inputs
+
+- When you have multiple input field, will you create specific handleChange function for each field?
+    + No, that's not the case!
+    + We use name attribute with every input field that distinguishes it
+    + Makesure your name attribute and state name for the field is same 
+    - Then, using ES2015 computed properties set the name state for the corresponding field
+        + Example
+            this.setState({ [e.target.name]: e.target.value });
+
+-- The htmlFor attribute
+
++ Its used inside label, and it should match in input field's id attribute
+
+-- Design Pattern: Passing Data Upwards
+
+- We already know the flow:
+    + Define a method in parent component that updates the state
+    + Pass that method as a prop to the stateful form component
+    + In the form component, when the form is submitted, call the parent function with the values stored in the state
+    + Parent component's function is called resutling in state updation and rerendering of the components
+
+-- Using the UUID Library
+
+- Keys and UUID (Universal Unique Identifier)
+    + Libray to use for getting unique keys when you dont have any 
+
+- How to use UUID?
+    1) Install
+        >> npm install uuid
+
+    2) Import
+        import uuid from 'uuid/v4';
+
+    3) Use
+        uuid() --> returns a unique id
+
+
+    
+
+
+
