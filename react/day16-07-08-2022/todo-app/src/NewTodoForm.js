@@ -4,6 +4,8 @@ class NewTodoForm extends Component {
     constructor(props) {
         super(props);
         this.state = { taskName: '' }
+
+        // function binds
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }

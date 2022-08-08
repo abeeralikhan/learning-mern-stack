@@ -1,12 +1,16 @@
 import { Component } from 'react';
+import './Todo.css';
 
 class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = { newTaskName: '' };
+
+        // function bindings
         this.handleRemoveTodo = this.handleRemoveTodo.bind(this);
-        this.handleEnableEdit = this.handleEnableEdit.bind(this);
+        this.handletoggleProperty = this.handletoggleProperty.bind(this);
         this.handleUpdateTodo = this.handleUpdateTodo.bind(this);
+        this.handleToggleComplete = this.handleToggleComplete.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -16,8 +20,8 @@ class Todo extends Component {
     }
 
     /** executes the parent enableEdit() function by passing id of the task */
-    handleEnableEdit() {
-        this.props.enableEditFn(this.props.id);
+    handletoggleProperty() {
+        this.props.togglePropertyFn(this.props.id);
 
         // setting the newTaskName equal to current so it will be easier to edit the current one
         this.setState({
@@ -46,13 +50,22 @@ class Todo extends Component {
         this.props.updateTodoFn(this.props.id, newTask);
     }
 
+    /** executes the parent toggleComplete() function by passing the task id*/
+    handleToggleComplete() {
+        this.props.toggleCompleteFn(this.props.id);
+    }
+
     /** returns a div element with the task name along with delete and edit buttons */
     displayTodo() {
+        const isDone = this.props.isDone;
+        const classes = isDone ? 'Todo-done': '';
         return (
             <div>
-                <span>{ this.props.taskName }</span>
+                <span className={ classes } onClick={ this.handleToggleComplete }>
+                    { this.props.taskName }
+                </span>
                 <button onClick={ this.handleRemoveTodo }> X </button>
-                <button onClick={ this.handleEnableEdit }> Edit </button>
+                <button onClick={ this.handletoggleProperty } disabled={ isDone }> Edit </button>
             </div>
         );
     }
