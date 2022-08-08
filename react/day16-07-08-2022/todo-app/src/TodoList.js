@@ -11,6 +11,7 @@ class TodoList extends Component {
         this.addTodo = this.addTodo.bind(this);
         this.removeTodo = this.removeTodo.bind(this);
         this.enableEdit = this.enableEdit.bind(this);
+        this.updateTodo = this.updateTodo.bind(this);
     }
 
     /** adds a new todo object in the existing array of todos */
@@ -34,15 +35,39 @@ class TodoList extends Component {
         this.setState({ todos: updatedTodos });
     }
 
-    /** turns the isEditing property of the todo with id received to true */
-    enableEdit(id) {
+    /** toggles the isEditing property of the todo to be either true or false */
+    // newEditState: by default it's set to true, but this function can be reused to set it back to false
+    enableEdit(id, newEditState=true) {
+        // creating a copy of the exisitng todos array
         const updatedTodos = this.state.todos;
 
+        // looping through the todos array
         for( let todo of updatedTodos) {
             if ( todo.id === id ) {
-                todo.isEditing = true;
+
+                // setting the new isEditing state of the todo using id
+                todo.isEditing = newEditState;
             }
         }
+
+        this.setState({ todos: updatedTodos });
+    }
+
+    /** updates the taskName of an exisitng todo in the todo array using its id */
+    updateTodo(id, newTaskName) {
+        // creating a copy of the exisitng todos array
+        const updatedTodos = this.state.todos;
+
+        // looping through the todos array
+        for( let todo of updatedTodos) {
+            if ( todo.id === id ) {
+                todo.taskName = newTaskName;
+                break;
+            }
+        }
+
+        // setting the isEditing state of the todo back to false
+        this.enableEdit(id, false);
 
         this.setState({ todos: updatedTodos });
     }
@@ -51,7 +76,7 @@ class TodoList extends Component {
     generateTodos() {
         return this.state.todos.map(todo => {
             let id = todo.id;
-            return <Todo key={ id } id={ id } taskName={ todo.taskName } isEditing={ todo.isEditing } removeTodoFn={ this.removeTodo } enableEditFn={ this.enableEdit }/>;
+            return <Todo key={ id } id={ id } taskName={ todo.taskName } isEditing={ todo.isEditing } removeTodoFn={ this.removeTodo } enableEditFn={ this.enableEdit } updateTodoFn={ this.updateTodo }/>;
         });
     }
 
