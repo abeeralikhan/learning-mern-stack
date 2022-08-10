@@ -1,0 +1,26 @@
+.CardsDeck {
+    height: 100vh;
+    width: 100vw;
+    background-color: #408928;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.CardsDeck button {
+    position: absolute;
+    top: 100px;
+    left: 33%;
+    background-color: black;
+    color: white;
+    font-weight: 800;
+    font-size: 1.25em;
+    padding: 1.25em 1em;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.CardsDeck button:hover {
+    background-color: grey;
+}

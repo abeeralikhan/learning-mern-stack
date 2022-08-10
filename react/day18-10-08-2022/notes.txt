@@ -1,0 +1,48 @@
+[ 10/08/2022 20:40 ]
+
+-- Loading data with async functions
+
+- Make your componentDidMount() fuction an async function
+    Example:
+        async componentDidMount() {
+            const res = await axios.get(API);
+        }
+
+-- Update
+
+- When a component is rerendered?
+    + When "state" is changed (setState() is called)
+    + When "props" are changed (parent state is changed)
+    + forceUpdate() is called - When some non-state data is changed and we need to rerender
+
+- componentDidUpdate()
+    + This lifescyle method is called everytime when the component is updated
+    + Note, it's not called the very first time when the component is rendered
+
+- When to use componentDidUpdate()?
+    - To implement any side effect operations
+        + Syncing up with "localStorage"
+        + Auto-saving
+        + updating DOM for uncontrolled components
+
+- We have access to previos state and previos props inside the componentDidUpdate() method
+    + If you wanna perfrom some comparison
+    + Example:
+        componentDidUpdate(prevProps, prevState) {
+            // we can call setState here as well 
+        }
+
+-- Unmouting
+
+- componentWillUnmount() 
+    + Called when component is unmounted or destroyed
+
+- When to use componentWillUnmount()?
+    - This is a place to do some cleanup
+        + Invalidating timers [ to look at ]
+        + Canceling network request [ to look at ]
+        + Removing event handlers directly put on DOM
+        + Cleaning up subscriptions
+
+        + Note, calling setState() is useless because component will no longer rerender
+
