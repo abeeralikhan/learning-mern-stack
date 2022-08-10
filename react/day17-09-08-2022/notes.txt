@@ -1,0 +1,52 @@
+[ 09/08/2022 20:55 ]
+
+~ Section 17: React Lifecycle Methods
+
+- Goals:
+    1) Describe what component lifecycle is 
+    2) Contrast methods for mounting, updating, unmouting
+    3) Overview the less commonly used lifecycle methods
+
+-- React Component Lifecycle
+
+- Lifecycle Methods:
+    - Are used to updated application state and reflect the changes to the UI before/after key react "events"
+        + Here, events necessarly means DOM events
+
+- The are three stages in the lifecycle of a react component:
+    - Mounting
+    - Updating
+    - Unmounting
+
+- The sequence in which things are executed in react  
+    constructor --> render --> componentDidMount
+
+1) Mounting
+    + After, the constructor and render methods have ran once, componentDidMount is ran after them
+
+    - componentDidMount:
+        + This method runs after the component is mounted
+
+        + "Mouting" is the first time the component is rendered to DOM
+
+        + This is a good place to load any data via AJAX or set up subscriptions/timers
+
+        - Runs only one time after the render() method
+            + Render() method is ran more than once, but componentDidMount wont be called
+
+        Note: You put setInterval() in the componentDidMount method, because you're gonna start it as soon as the page is loaded. NOT IN THE CONSTRUCTOR
+
+    AJAX example: load data using axios.get(api)
+
+- Why not load data in the constructor?
+    + We would get the same result
+    + But, It's in react docs to not set state inside the constructors
+    + It's conventional to not set state in the constructor
+
++ It's recommend every time you fetch data, it should be in the componentDidMount method. There are some complicated issues 
+
+
+
+        
+
+
