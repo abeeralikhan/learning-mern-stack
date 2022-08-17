@@ -1,0 +1,159 @@
+[ 17/08/2022 23:20 ]
+
+~ Section 20: React Router
+
+-- Client-Side Routing with React Router
+
+- Goals:
+    1) Describe what client-side routing is and why it's useful
+    2) Compare client-side routing to server-side routing
+    3) Implement basic client-side routing with React Router
+
+- Server-side routing
+    + Traditional routing is "Server-side routing"
+    + Server decides what HTML to return based on URL requested, entire page refreshes
+
+-- Fake Client-side routing
+    + We can fake routing by showing and hiding components
+    + Entire page is not refreshed
+    + Small chunk of a page is refreshed
+
+- Without a react router you can achieve some degree of routing by showing and hiding some components based on some data
+    + But, forward and back buttons won't work, cuz a history log is not saved 
+    + hrefs are not being used!
+    + We dont get a different URL we move around the pages. URL is staying the same
+    + No way to bookmark a page on the site (always local host)
+
++ In this situation, React Router comes into scene!
+
+-- React Client-Side Routing!!
+
+- What is client-side routing?
+    + Client-side routing handles mapping between URL bar and the content a user sees via browser than via server
+    + Instead of server, browser serve the URL mappings and requests
+    + There is no request sent to the server, it's all happening in JavaScript
+    + So, we can move forward and backward, bookmark things
+
+    + In client-side routing, page never refreshes!
+
++ React router is not a part of react, it's a tool that we need to install
++ It's it own tool, develop by developers
+
+- How to install react router?
+    >> npm install react-router-dom
+
+- How to include react router in our project?
+    1) Import { BrowserRouter } from 'react-router-dom'
+    2) In index.js, wrap your <App /> component using <BrowserRouter> tag
+        Example:
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+
++ Importing and wrapping the App component with browserRouter enables routing in our project
+
+- How to define a basic route?
+    1) import { Route } from 'react-router-dom'
+    2) <Route path="/routeName" component={Component} />
+        The above component will render your passed on component on given route
+
+-- Using switch and exact
+
+- There's a problem with simple routes, they try to match every sub path as possible and combine them.
+    - For example, you have following routes
+        / --> A route
+        /friend --> Another route
+        /friend/profile --> Another route
+
+    + When you enter '/friend/profile' route, it will also display the contents of '/' and '/friend' routes
+
++ To solve above problems, we use switch and exact
+
+- What is switch and why do we use it?
+    + It's a component that comes with 'rect-router-dom'
+    + We wrap all of our routes insided <Switch></Switch> tags to use it
+    + It's used to match single route
+
+- What's the problem with solely using Switch?
+    + It matches the first route
+    + For example, you have /friend before /friend/course
+        It will return /friend
+
+    + To fix this, we have order routes so specific routes will appear first
+        i.e /friend/course before /friend
+
+- How we can the general route matching problem of switch?
+    + By using exact attribute in the <Route />
+    - Example:
+        <Route exact path="..." component={..} />
+
+    + Exact makesure the entire url pattern is matched with the request
+
++ Sometimes when using exact, you dont really need to use Switch!
+
+- Note: We cannot use the url patterns directly in the href attribute of the anchor tags
+    + Because, everytime the anchor tag is clicked, browser sends a GET request the refreshes the entire page
+
+    + That's violate the concept of client side rendering. 
+        Where we dont want the user's page to be refreshed
+
+-- <Link> Component
+
+- How we can solve the refreshing page issue with the anchor tags?
+    + We use a <Link> component that comes with react router dom
+
+- What is <Link> Component?
+    + <Link> acts a replacement for <a> tags
+    + We use "to" instead of "href" in the <Link> component
+    + <Link> Component doesn't issue a GET request
+
++ We use link tags all the time!
+
+-- <NavLink> Component + exact
+
+- What is NavLink and why do we need to use it?
+    + <NavLink> work just like the normal <Link>
+    + But, it has one extra feature
+
+    + We can use the "activeClassName" attribute with NavLinks and pass some class to it
+        Whenever link is active, that class will be automatically removed and applied
+
+- One issue is that it also matches all same-sub patterns and also applies class to them
+    + To solve this issue, we use exact with NavLinks 
+
+-- Render prop vs. Component prop in routes
+
++ The component prop in routes is one way in specifying what content or component will be rendered given a certain path.
+    >> <Route ... component={DisplayInfo} />
+
++ There's an alternative to component prop
+
+- What's the problem with just using the component props?
+    + If the passed component itself recieve props, there's not a clear way to pass props to it!
+        Example:
+            <Route path="/info" component={DisplayInfo} />
+
+    + How do we pass a name prop to DisplayInfo component?
+
+    - One way:
+        <Route path="/info" component={() => <DisplayInfo name="Abeer" />}
+
+    + The above code will work just fine, but it will have some performance issue
+        Component is not reused, a new component is created everytime
+
+- Why and how do we use render prop to pass content to routes?
+    + We use it, to avoid component from creating and distoying again and again
+    + Using render, the component is only rerendered, not mount and unmount.
+
+    + We use it in the same way pass props using the component attribute
+        Example:
+            <Route path="/info" render={ () => <DisplayInfo name="Abeer" /> }
+
++ Use "component" prop if you're not passing any prop
+
++ Use "render" prop if you're passing props 
+
+
+
+
+
