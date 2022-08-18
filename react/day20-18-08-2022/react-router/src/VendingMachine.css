@@ -1,0 +1,38 @@
+.VendingMachine {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.VM-nav {
+    background-color: black;
+    opacity: 0.7;
+    width: 60%;
+    height: 50vh;
+    /* padding: 1em; */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.VendingMachine,
+.VM-nav {
+    margin-top: 3rem;
+}
+
+.VM-link {
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    width: 70%;
+    border-block: solid 1px aqua;
+    text-align: center;
+}
+
+.VM-link:hover {
+    transform: scale(1.2);
+    color: aqua;
+}
