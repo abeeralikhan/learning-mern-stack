@@ -1,0 +1,21 @@
+[ 18/08/2022 ]
+
+~ Section 22: React Router Patterns
+
+-- URL Parameters 
+
+- How to receive an input from URLs?
+    path="/hello/:parameter"
+
+- How to access data passed down in URL parameters?
+    - There are two ways: 
+        1) If only single prop is passed down to the component and that's from parameter:
+            <Route path="/:name" component={Hello}
+
+            Inside hello, we'll use this.props.name to access it
+        
+        2) If component is receiving more than one prop:
+            <Route path="/:name" render={(routeParams) => <Hello age={12} {...routeParams}>}
+
+            --> routeParams = { history, location, match }
+            --> We will access the parameter using this.props.match.params.name;
