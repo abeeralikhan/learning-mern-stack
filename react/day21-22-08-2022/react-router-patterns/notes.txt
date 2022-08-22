@@ -1,2 +1,15 @@
 [ 23/08/2022 01:01 ]
 
+-- Multiple Route Params
+
++ /food/:foodName/drink/:drinkName
+
+- We can access to all URL params using react-router-dom hook "useParams"
+    + Example:
+        const { foodName, drinkName } = useParams();
+
+-- Including a 404
+
+- To include a 404 error page for a route that doesn't exist.
+    + Include a <Route /> with path "*" --> <Route path="*" element={() => <h1>Error Not Found</h1>}/>
+
