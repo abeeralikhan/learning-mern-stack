@@ -18,9 +18,22 @@
         + It's not a buttion
         + When anywhere in code this Component has run, you'll be redirect to the intended route
 
-    2) Using history.push() method
+    [ OLD WAY ]
+    2) Using push() method of useHistory hook
         + This method is useful when you have to perfom some operations on users data before redirecting them to a route
-        + Access this method using this.props.history.push("/food")
+            const history = useHistory();
+            history.push('/');
 
-        + history object has a lot of other features such has goBack() 
+
+    [ NEW WAY ]
+    3) Using useNavigate() hook
+        const navigate = useNavigate();
+        navigate('/');
+
++ React hooks can not be used in class based components
+
+-- Implementing a back buttion
+    + Use the "useHistory" hooks method goBack()
+    const history = useHistory();
+    history.goBack();
     
