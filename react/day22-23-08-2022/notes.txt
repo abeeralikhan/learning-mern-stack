@@ -1,0 +1,26 @@
+[ 23/08/2022 16:30 ]
+
+-- The Redirect Component
+
++ Client-side Redirect
+
++ We can mimic the behaavior of server-side redirects using react routers
+
+- When to redirect?
+    + Submits a form
+    + Incase of 404 Error redirect user
+    + And, so on!
+
++ Redirecting dynamically 
+
+- There are two ways to implement client-side redirection:
+    1) Using <Redirect to="[route]" /> Component
+        + It's not a buttion
+        + When anywhere in code this Component has run, you'll be redirect to the intended route
+
+    2) Using history.push() method
+        + This method is useful when you have to perfom some operations on users data before redirecting them to a route
+        + Access this method using this.props.history.push("/food")
+
+        + history object has a lot of other features such has goBack() 
+    
