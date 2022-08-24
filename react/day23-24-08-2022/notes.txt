@@ -1,0 +1,87 @@
+[ 24/08/2022 07:30 ]
+
+~ Section 32: Introducing React Hooks
+
+-- Intro to hooks
+
++ Hooks help you write functional components that have all the features of class-based components.
+
++ Things are shorter. Easier to Understand & Use between the components
+
++ React comes with multiple built-in hooks
+
+1) useState
+    + It's a function that accepts an initial value (e.g 0 or '')
+    + And, returns an array consist of a piece of state and a function to update the piece of state
+
+    Example:
+        // array destructuring
+        const [ 0, dispatchSetState() ] = useState(0)
+        const [ '', dispatchSetState() ] = useState('')
+
+-- Building a Custom Hook: useToggleState
+
++ The main benefit of hook is code reusability, we can share stateful logic between components
+
+- Suppose you have multiple pieces of states that need to be toggled
+    Example:
+        const [isOpen, setIsOpen] = useState(false);
+        const [isVisible, setIsVisible] = useState(true);
+        const [isClicked, setIsClick] = useState(false);
+
+    + To toggle the states, we need to create separate toggling logic for them:
+        onClick={ () => setIsOpen(!isOpen) }
+        onClick={ () => setisVisible(!isVisible) }
+        onClick={ () => setisClick(!isClick) }
+
+    + We can create our own hook that toggles the state without wanting it to be passed
+
+    + useToggle will be create using useState is separate file
+        const [state, setState] = useState(initialVal);
+        const toggle = () => setState(!state);
+        return [state, toggle]
+
+    + Note: In above example, we are returning our own setState function
+
+-- Building a Custom Hook: useInputState
+    + Make a custom hook for the repititive handleChange Function
+
+-- The useEffect Hook
+
++ All the lifecycle methods work in class-based components
+
++ Functional components don't have any access to lifecycle methods
+
++ useEffect is a combination of all of the lifecycle methods
+
++ The code inside useEffect will run after every single render!!
+
+- How to use the useEffect hook?
+    useEffect({
+        // piece of code to run after every render
+        // this function will run for mounting, update, and unmounting
+    });
+
+-- Fetching Data w/ the useEffect Hook
+
++ You can not return anything from a useEffect's callback function
+
++ Making a function inside the callback function and execute it 
+
+- How to control useEffect hook?
+    + Pass a second parameter inside the function which an array destructor
+    + That array will consist of as many states as you want
+
+    + The point is, only when the passed state is changed, then only the useEffect will run
+
+    useEffect(() => {
+        function async fetchData() {
+            // await
+        }
+        fetchData();
+    }, [state1]);
+
+    + The above useEffect will run, only when the state1 is changed!
+
+
+
