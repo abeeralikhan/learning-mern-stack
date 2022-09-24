@@ -1,0 +1,197 @@
+[ 24/09/2022 23:11 ]
+
+~ Node Security & Authentication
+
+-- 1. Security & Authentication Overview (5m)
+
+  + Social Sign-On (Octa, Oauth Zero, Amazon's Cognito, or Social Sign-on directly)
+  + Google OAuth
+
+  + In real world you'll never be implementing authentication from scratch, you'll be opening yourself for vulnerabilities and bugs that can be exploited easily. 
+
+  + In real world projects, we use off-the-shelf authentication
+
+  + All of the approaches have one thing in common, that they follow a standard which is known as Oauth 2.0.
+
+  + Oauth 2.0 is the most widely used way of login on internet
+
+  + The Goal of this section to teach real world authentication techniques, not toy techniques.
+
+  [ The Principle of Least Privilege ] ? taught with CORS
+
+-- 2. Encrypted Connections w/ SSL and TLS (6m)
+
+  - HTTPS with SSL/TLS
+    + Makesure to use only "HTTPS" while sharing data between the client (browser) and the server. 
+    + Data shared using the HTTPS is encrypted
+    + HTTPS prevents other users from eavesdropping on the data and from temparing (modifying) it.
+
+  - How does it happen using the SLL/TLS protocol?
+      
+  + When we share our data on a unsecured site (i.e. not using https) our data is not encrypted. 
+
+  + Other users connected on the same wifi can analyze the packets using packet analysis tools such as "Wireshark" 
+
+  + HTTPS, under the hood uses powerful encryption of SSL & TLS
+
+  - SSL & TLS
+    + SSL --> Secure Socket Layer
+    + TLS --> Transport Layer Security
+    + SSL and TLS are basically same things.
+    + TLS is the successer of the SSL protocol.
+    + SSL is old one, and the TLS is the new one.
+
+    - Versioning:
+      SSL1.0, SSL2.0, SSL3.0, TLS1.0, ....
+
+    + HTTPS still uses HTTP, but wraps it using the TLS protocal 
+
+    + i.e TLS + HTTP --> HTTPS
+
+    + Newer and secured versions of TLS keeps on comming
+
+    - What are the properties that are encrypted in HTTPS, and which are visible in the form of plain text?
+      + Host name, and the PORT number is not encrypted.
+      + Body of the data where the main data is encrypted.
+
+    + In other words, when you're communicating using the HTTPS protocol, other users may know to which host your communicating to, but what you're communicating will be secured. 
+
+    + For example, you're searching something on google, hackers will know that you're using google, but what you're searching on it wont be exposed using HTTPS & TLS.
+
+-- 3. Digital Certificates, Signing, and Man In The Middle Attacks (6m)
+
+  + For our data to be encrypted, we need SSL/TLS Certificates 
+
+  - What are Digital Certificates?
+    + Used to verify the server's ownership prior to sending encrypted data.
+
+  + If the digital signature of the certificate is valid, and we trust the person who issued these certificates, then only you say I'm willing to use the key to send data, back and forth with the server.
+
+  + It's not enough if the data is encrypted, if we are sending the data to some malicious hacker.
+
+  - What are Man In The Middle Attacks?
+    + Hackers pretend to be the server, and receives the encrypted data
+
+  - How digital certificates prevent man in the middle attacks?
+    + They verifies the owner first (server), if the owner's identity is verified, then only the encrypted data is shared.
+
+  - By whom these certificates are signed by?
+    + They are signed by a "Certificate Authority"
+    + A trusted organization that issues digital certificates
+
+  - Who provides signed SSL Certificates for free?
+    + Let's Encrypt
+    + They are back by Google, Facebook, and big companies
+
+  - What are some conditions of Let's Encrypt?
+    + Site must have domain name.
+    + It can't be just IP Address on some server somewhere
+
+  - What are Self-Signed Certificate?
+    + Enable HTTPS but not trusted by others
+    + We sign it by ourselves on our local machines
+    + Useful for development
+
+  + We dont have reputation like large CA Authorities, that's why self-signed certificates are not used in the production.
+
+  + Browser will provide with you with a warning if you visit a site having self-signed certificates.
+
+  - What are CA-Signed Certificate and why do we wanna use them instead of the self-signed one in production?
+    + Trusted by most clients on the web.
+    + Useful for production.
+
+  - All TLS (digital) Certificates can be broken down into two following categories:
+    + Self-Signed Certificate
+    + CA-Signed Certificate
+
+   + TLS protocal --> Encrypts the traffic
+   + TLS certificates --> Verifies the ownership of the server you're talking to.
+
+-- 4. Setting Up Our Securtiy Example (4m)
+
+  + path module makes sure that the path to our file directory is valid in all operating systems
+
+  + By default, express server serves using the HTTP protocol, where data is not encrypted.
+
+  + Anyone on our network, listening to the traffic can see the data
+
+  + Let's make it difficult for nosy hackers and other software that are listening to our data we're sending back and forth.
+
+-- 5. HTTPS w/ Node, Self Signed Certificates, and Public Key Cryptography (16m)
+
+  - What are the ways using which we can use HTTPS in Node Servers?
+    + Google Cloud
+    + Amazon AWS
+    + Amazon CloudFont --> Served using CDN --> Pages will be served from the closest location, in the fastest way possible!
+
+  + We use HTTPS in local servers because to makesure our server communicate the sensitive information correctly using the HTTPS protocol, otherwise our testing would remain only limited on the HTTP protocol.
+
+  - In how many ways we can start our HTTP server?
+    1) Listen() function from express app module
+      >> app.listen(PORT, ...);
+
+    2) or, Node's built-in http module
+      >> http.createServer().listen(PORT, ...);
+
+  + Sometimes, we used to the 2nd option. 
+
+  - Because, if we can create a server using http module, then we can also create a node server using "https" module:
+    >> https.createServer().listen(PORT, ...);
+
+  - Note: When use https module to create a server, we can pass an object to configure it:
+    >> https.createServer({
+          key: '',
+          cert: ''
+        }).listen(PORT, ...);
+
+  + In the https createServer's option object we can define SSL Certificate information.
+
+  - From where we will get the SSL Certificate details to use it in our server?
+    + We will use "OpenSSL" to create that certificate
+
+  - What is OpenSSL?
+    + Open source organization that provides certificates 
+  
+  - How we can generate a self-signed certificate using OpenSSL?
+    >> openssl req -x509 -newkey rsa:4096 -nodes -keyout key.pem -out cert.pem -days 365
+
+    + openssl --> main command
+    + req --> to generate a new certificate
+    + -x509 --> tells this is self-signed certificate
+    + rsa:4096 --> using rsa encryption of key size of 4096 bites
+    + -node --> we dont want any password to access
+    + -keyout key.pem --> key output, .pem is common format to store certificate related data
+    + -out cert.pem --> certificate output 
+    + -days 365 --> it will be valid for 365 days [default is 30 days]
+
+  + We only have to generate the certificate once per project, or once per year :)
+
+  + We dont have to memorise the command, this command is one google search away.
+
+  + For self-signed certificates, specifying the common name is not necessary because we will run the server locally and we dont have the domain name.
+
+  + key.pem ensures we're the only one encrypting the data on this server. We have the ownership of the key
+
+  + cert.pem allows to decrypt the data, encrypted by the above key -- browser will do it.
+
+  + Browser requries access to that public certificate
+
+  + This approach is known as "Public Key Cryptography"
+
+  + Now, write the corresponding files names in the https' createServer object.
+
+  - Note: We need import fs module, and use the readFileSync() function to load the files before using them, 
+    { key: fs.readFileSync('key.pem') }
+
+  - We also have to pass the express app's object as a second arguement to the https.createServer to makesure our server is working correctly
+
+-- 6. Helmet.js (10m)
+
+
+
+  
+
+    
+
+
+
