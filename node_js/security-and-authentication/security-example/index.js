@@ -1,11 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
+const helmet = require("helmet");
 const express = require("express");
 
 const app = express();
 
 const PORT = 3000;
+
+app.use(helmet());
 
 app.get("/secret", (req, res) => {
   return res.send("Your secret code is 963!");

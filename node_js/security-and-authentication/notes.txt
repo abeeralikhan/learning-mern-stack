@@ -1,4 +1,4 @@
-[ 24/09/2022 23:11 ]
+[ 24/09/2022 23:11 Day 01]
 
 ~ Node Security & Authentication
 
@@ -185,7 +185,198 @@
 
   - We also have to pass the express app's object as a second arguement to the https.createServer to makesure our server is working correctly
 
+[ 25/09/2022 17:45 Day 02]
+
 -- 6. Helmet.js (10m)
+
+  - What is Helmet?
+    + Helmet JS is a collection of middlewares 
+  
+  + We use all the security related middlewares at the top 
+
+  + When we use helmet(), it includes 15 smaller security middlewares in our project.
+
+  - Helmet set some default headers to the html requests and responses
+    - For example:
+      content-security-policy
+      X-XSS-Protection
+      Referrer-Policy
+      X-Permitted-Cross-Domain-Policies, and so on. 
+
+  + When we dont use helmet, header exposes the name of the server we're using for example express. 
+
+  + We dont want others to know what type of server we're using to avoid them from exploiting any potential bugs on our website
+
+  + Helmet js helps to solve this issue, by hiding the server implementation details
+
+  + We can pass an options object to the helmet middleware if we wanna enable or disable some middlewares
+
+  + Andre uses helmet in all of its project
+
+-- 7. Authentication vs Authorization (7m)
+
+  + We want users to login when we want some part of our websites to be protected
+
+  + So, not all users can view everything in our application
+
+  - For example:
+    + We want our users' data to be secured
+    + We dont want everyone to manipulate the content of our application
+
+  - When it comes to login, there are two most important terms that are used.
+    + Authentication
+    + Authorization
+
+  - What is meant by authentication?
+    + It verifies users really are who claimed they to be
+    + It verifies in the form of username and password
+
+  - What is meany by authorization?
+    + It verifies if user has permission to access some resource after being authenticated
+    + It determines which resources can be accessed by users and which are not
+
+  - When we dont have authentication & authorization:
+    + Users can access our website anonymously
+    + And, they can access whatever the data they want
+
+  - When we have authentication and authorization:
+
+    1) Authentication step:
+      + This is the first stop they face when they access our website
+      + They need to prove their identity
+      + If its me, I need to prove that I'm Abeer
+
+      - Ways of authentication:
+        + Login using password
+        + Login using biometrics (fingerprint)
+        + Login using two-factor
+
+    2) Authorization step:
+      + Authenticated users can access their data
+      + But, when they ought they access someone else' data, server will restrict them.
+
+      + Authorization is sometimes called Access Control
+      + It checks what you have permission to do
+
+
+  + These two concepts of authentication & authorization known as "Auth", because both prefixes with it. 
+
+  - We have following status codes for it:
+    + 401 --> Unauthorized --> Client must authenticate itself to access it
+
+    + 403 --> Forbidden --> Client is authenticated but does not have the rights to access it
+
+-- 8. Social Sign In (5m)
+
+  - What is social sign-in or social login?
+    + When you choose to login on a website, and they provide you with different options to login.
+
+  - They provide you with different social providers to login using:
+    + Google
+    + Facebook
+    + Apple
+    + Twitter
+    + Github, etc
+
+  + You might already have an account on these sites 
+
+  + You dont need to rememeber any specific credentials for that site
+
+  + Certain information on this site will be pre-populated using your other socila profile that you choose to sign-in using
+
+  + Using this, signing into any site securely will be a matter of one or two clicks, and you dont need to remember anything 
+
+  + This is social sign-in
+
+  - When we add social sign-in to our website, we want:
+    + We want things to be convinient for the user
+    + We trust Google to keep our users passwords secure than we would ourselves
+
+  + Any experienced developer will agree that big giants like google and facebook can keep our passwords protected more than a small group of developers implementing authentication and authorization from scratch.
+
+-- 9. API Keys (11m)
+
+  - There are three main tools that developers use to makesure only authorized users can access a server and it's APIs:
+    1) API Keys
+    2) OAuth Tokens
+    3) JSON Web Token (JWT)
+
+  - What is a API key?
+    + An API key is a string value
+    + It identifies your project using a simple API key to check quota and access
+
+  - We use API keys for two purposes?
+    1) A Unique Identifier for the Project
+      + So, server will know from which application the request has come from
+
+    2) Grant/Restrcit Acces to some APIs
+      + When users of your API are developers, that are trying to enable some functionality in their application
+      + That make use of your features that you have already expose
+
+  + Sometimes, these API keys are often public. When the provider wants to know from which applications are using it
+
+  + But, usually we wanna make them private.
+
+  + We have to makesure they are only available in the server side, not on the front end
+
+  + API keys --> Servre side, to makesure its not abused
+
+  + We pass API key either in the query string, or in the header of the HTTP request
+
+  + The provider of the API restrict calls per API KEY by using the 429 status code. 
+
+  + Status Code 429 --> Too Many Request --> Rate Limiting
+
+  + We use "rate limiting" when our API is public and accessible by everyone, so server wont become unavailable to other users 
+
+  + API keys are great to makesure your API is used appropriately by some application
+
+-- 10. JWT Tokens (15m)
+
+  + JWT are a type of access tokens
+
+  - What are access tokens?
+    + They are very much like api key
+    + They identify specific user of a application
+    + They act as credential for a user to grant access to an API
+
+  + Each JWT contains encoded JSON Object
+
+  - How does JWT token work?
+    + Whenever a user is logged in using his/her username and password, an authorized token is returned to him.
+    + Now, whenever he uses some API, the token is automatically included in the query string.
+
+  - Why do we use JWT tokens?
+    + Using it, the user dont have to log-in again and again to prove his/her identity.
+    + The token verifies the user identity
+    + The JWT token also signifies what permission does the user has
+    + It stores the access control of the user
+
+  + JWTs are signed, the sender is ownership is identified
+
+  + API key --> application level
+  + JWT --> user level
+
+  - What information does the JWT contain?
+    + HEADER --> Algorithm & Token type 
+    + PAYLOAD --> DATA
+    + VERIFY SIGNATURE
+
+-- 11. The OAuth Standard (6m)
+
+  + [Continue from here]
+
+
+3rd Day --> Monday --> 215 --> 223
+
+4th Day --> Tuesday --> 224 --> 236
+
+  
+
+
+
+    
+
 
 
 
