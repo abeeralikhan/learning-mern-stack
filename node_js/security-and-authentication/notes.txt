@@ -362,14 +362,157 @@
     + PAYLOAD --> DATA
     + VERIFY SIGNATURE
 
--- 11. The OAuth Standard (6m)
+[ 29/09/2022 17:00 Day 03 ]
 
-  + [Continue from here]
+-- 11. The OAuth Standard (215)
 
+  - What is OAuth?
+    + One of the widely used approaches in implementing login 
+    + Used by Google, Facebook, GitHub, etc
 
-3rd Day --> Monday --> 215 --> 223
+    + It's an authentication standard that made social sign-in widespread
 
-4th Day --> Tuesday --> 224 --> 236
+  + OAuth 2.0 defines the flow or process that goes on behind the scenes when you log on sites like Google 
+
+  + This flow is not the simplest for developers 
+
+  - Why do we need this complexity?
+    + The problem that OAuth tries to solve, that letting user sign-in to sites without using their password 
+    + It let users log-in to unknown, untrusted sites without entering their passwords
+
+  - What is the OAuth Server?
+    + Service you're using to sign-in
+    + For example, google, github, twitter etc
+    + They have their oauth servers where you put your credentials 
+
+  + Google use oauth internally for all of it's services like youtube, google, gmail, etc. You will encounter the same sign in page
+
+  + This make google secure this one server really really well
+
+  + And, reduce the attack surface for the attackers
+
+  + Added Bonus: Google can keep all of your accounts at one place 
+
+  + We can also remove apps that have access to our google accounts. We can revoke consent
+
+-- 12. OAuth 2.0 Authorization Code Flow (216)
+
+  - What are the differnt roles/things invloved in the auth 2.0 flow?
+    1) Resource Owner
+    2) Client
+    3) Resource Server
+    4) Authorization Server
+
+  + Resource Owner: When you log-in to medium as a user, you're the resouce owner.
+  
+  + And, as a user, you're using your browser, as a user agent to talk to the client.
+
+  + Client: Web Application that tries to access to protected data for user, for you.
+
+  + And, protect data, recides behind some resource server
+
+  + Resource Server: Where your data recides 
+
+  + Authorization Server: Authenticates the user identiy, and give access to the resource server
+
+  + OAuth 2.0 has different types of flows
+
+  + Where's the "Authorization Code Flow" is the most common and the gold standard when it comes to security.
+
+  + Use "Authorization Code Flow" when you have a frontend, and as well as a backend, where you can securely store some secret
+
+  + Therefore, we will be looking at the standard authorization code flow
+
+  + This is a redirect-based flow
+
+  - The Authorization code flow:
+    1) Client (Web App) makes a get request to the Authorization Server (Google)
+
+    2) It will redirect you to the authentication prompt, where you will enter your user & password, and consent the web-app to use your data
+
+    3) If you logged-in successfully, the authentication server will return a short-lived "authorization code" to the client
+
+    4) The Client returns the authorization code + client secret to /token
+
+    5) Authorization Server returns the access token to the client 
+
+    6) Then, finally the user can make the request with the access token, which is ususally a standard JSON web token
+
+  + The idea of barrier tokens is the part of OAuth 2.0 standard, and was widely adopt by companies like Google
+
+  + The OAuth standard doesnt restrict you to the type of token
+
+  + We use this so the user never send their password directly to the resouce server 
+  
+-- 13. OAuth In Action with Single Sign On (217)
+
+  + Callback URI --> It's the page where user will be redirected to after the sign-in was successful
+
+  + OpenId --> Build on top off Oauth 2.0
+
+  + By singing in using google, you automatically sign in to youtube, etc. 
+
+  + The google authorization server set cookies for other google sites as well, so, you dont have to enter your credentials again and again
+
+  + This is known as "Single Sign-In"
+
+  + Sometimes the access token is stored in the browser's local storage or the cookies or sometimes it will be stored in the server as user session
+
+  + As you get used to implementing these flows in your website, then you'll get comfortable with the steps involved
+
+-- 14. Registering with the Google Authorization Server (218)
+
+  + Now, we will implement Oauth in our server
+
+  - First Step:
+    + Registering your website (client) with the authorization server
+
+  + In this lecture, we'll register our node application with the google authorization server, so we can use google's social sign-in
+
+  - Steps of registeration
+    1) Find your way to google developers cloud
+    2) Create a new project
+    3) Go to credentials 
+    4) Create credentials --> OAuth client ID
+    5) Configure the Consent Screen
+    6) Select user type to be external & click on create
+    7) Fill up the information on the consent screen
+    8) Save & Continue
+    9) Create Oauth Client ID
+    10a) Add URI --> https://localhost:3000
+    10b) Add Authorised redirects URIs --> https://localhost:3000/auth/google/callback
+
+  + OAuth Client ID --> Uniquely identifies our application to Google
+  + Consent Screen --> What information need from user
+
+  + If we wanna make our application public, we will always select the "External" user type 
+
+  + Scopes give us access to the specific user data that just logged in 
+
+  + To pre-populate user's profile, we need to configure ahead of time in the scope what data to include in the consent
+
+  + We can add test users untill the status of our application is testing 
+
+  + We can push our application to production so any user with a google account can log into our application
+
+  + We need to define "https://localhost:3000/auth/google/callback" this endpoint in our node application for handling redirection callback from authorization server (or google auth server to be specific)
+
+  + If the all the steps were successful, we will receive client id and client secret
+
+  + This secrect makes sure, your website, with this secret, will be grant authorization
+
+  + We have to makesure this value has kept secure
+
+  + Client ID: 160302811959-7t9sg15tn51judu7aum1hokq2aihgsop.apps.googleusercontent.com
+  + Client Secret: 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
+
+-- 15. Authentication Endpoints with Middleware (219)
+
+  + 
+
+4th Day - Friday - 219 - 226
+
+5th Day - Sunday - 227 - 236 
 
   
 
