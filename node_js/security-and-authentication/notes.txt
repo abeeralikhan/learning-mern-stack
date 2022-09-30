@@ -503,8 +503,10 @@
 
   + We have to makesure this value has kept secure
 
-  + Client ID: 160302811959-7t9sg15tn51judu7aum1hokq2aihgsop.apps.googleusercontent.com
-  + Client Secret: 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
+  + Client ID: 
+  + Client Secret: 
+
+[ 30/09/2022 16:30 Day 04 ]
 
 -- 15. Authentication Endpoints with Middleware (219)
 
