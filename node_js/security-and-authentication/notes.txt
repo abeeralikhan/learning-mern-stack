@@ -2,7 +2,7 @@
 
 ~ Node Security & Authentication
 
--- 1. Security & Authentication Overview (5m)
+-- 1. Security & Authentication Overview
 
   + Social Sign-On (Octa, Oauth Zero, Amazon's Cognito, or Social Sign-on directly)
   + Google OAuth
@@ -19,7 +19,7 @@
 
   [ The Principle of Least Privilege ] ? taught with CORS
 
--- 2. Encrypted Connections w/ SSL and TLS (6m)
+-- 2. Encrypted Connections w/ SSL and TLS
 
   - HTTPS with SSL/TLS
     + Makesure to use only "HTTPS" while sharing data between the client (browser) and the server. 
@@ -58,7 +58,7 @@
 
     + For example, you're searching something on google, hackers will know that you're using google, but what you're searching on it wont be exposed using HTTPS & TLS.
 
--- 3. Digital Certificates, Signing, and Man In The Middle Attacks (6m)
+-- 3. Digital Certificates, Signing, and Man In The Middle Attacks
 
   + For our data to be encrypted, we need SSL/TLS Certificates 
 
@@ -107,7 +107,7 @@
    + TLS protocal --> Encrypts the traffic
    + TLS certificates --> Verifies the ownership of the server you're talking to.
 
--- 4. Setting Up Our Securtiy Example (4m)
+-- 4. Setting Up Our Securtiy Example
 
   + path module makes sure that the path to our file directory is valid in all operating systems
 
@@ -117,7 +117,7 @@
 
   + Let's make it difficult for nosy hackers and other software that are listening to our data we're sending back and forth.
 
--- 5. HTTPS w/ Node, Self Signed Certificates, and Public Key Cryptography (16m)
+-- 5. HTTPS w/ Node, Self Signed Certificates, and Public Key Cryptography
 
   - What are the ways using which we can use HTTPS in Node Servers?
     + Google Cloud
@@ -187,7 +187,7 @@
 
 [ 25/09/2022 17:45 Day 02]
 
--- 6. Helmet.js (10m)
+-- 6. Helmet.js
 
   - What is Helmet?
     + Helmet JS is a collection of middlewares 
@@ -213,7 +213,7 @@
 
   + Andre uses helmet in all of its project
 
--- 7. Authentication vs Authorization (7m)
+-- 7. Authentication vs Authorization
 
   + We want users to login when we want some part of our websites to be protected
 
@@ -266,7 +266,7 @@
 
     + 403 --> Forbidden --> Client is authenticated but does not have the rights to access it
 
--- 8. Social Sign In (5m)
+-- 8. Social Sign In
 
   - What is social sign-in or social login?
     + When you choose to login on a website, and they provide you with different options to login.
@@ -294,7 +294,7 @@
 
   + Any experienced developer will agree that big giants like google and facebook can keep our passwords protected more than a small group of developers implementing authentication and authorization from scratch.
 
--- 9. API Keys (11m)
+-- 9. API Keys
 
   - There are three main tools that developers use to makesure only authorized users can access a server and it's APIs:
     1) API Keys
@@ -331,7 +331,7 @@
 
   + API keys are great to makesure your API is used appropriately by some application
 
--- 10. JWT Tokens (15m)
+-- 10. JWT Tokens
 
   + JWT are a type of access tokens
 
@@ -506,15 +506,160 @@
   + Client ID: 
   + Client Secret: 
 
-[ 30/09/2022 16:30 Day 04 ]
+[ 02/10/2022 19:10 Day 04 ]
 
 -- 15. Authentication Endpoints with Middleware (219)
 
-  + 
+  + We're gonna secure the /secret endpoint, so the authorized users can access the data it provides
 
-4th Day - Friday - 219 - 226
+  + We does this authorization check in the middleware before the endpoint sends the data back
 
-5th Day - Sunday - 227 - 236 
+  + But, we dont wanna restrict access to every endpoint, we have to pass our html so that the user can log in
+
+  + In express, we can define middleware for each endpoint.
+
+  + We can make a reusable middleware that check if the user is logged in or not, we pass it to every endoijn
+
+  - We can add multiple middlewares before a specific endpoint
+    >> app.use('/secret', midd1, midd2, midd3, controller);
+
+  + This is how we do authorization in express
+
+  - Using social sign-in:
+    + Decide what end-points you will be needing
+    + Work your way from top to bottom
+
+  - What endpoints do we need?
+    + Any OAuth application must have following three routes:
+
+      1) /auth/google --> where use will log in
+
+      2) /auth/google/callback --> where user will be finally redirected to after receiving the authorization code response
+
+      3) /auth/logout
+
+  + The way we log out is generic
+
+  + It's not related to google, facebook, github, etc..
+
+  + The way of logging out is going to be the same regardless
+
+  - How will we using these endpoints?
+    + We will be using it in the index.html
+
+-- 16. Passport.js (220)
+
+  - How we are actually going to login the use with google following the oauth flow?
+    + There are quite a few steps invloved in the oauth process
+    + We are going to use a widely use middleware called passport js 
+
+  - What is passport.js?
+    + Is an npm package that provides the authentication middleware for Node.js
+
+  + It does this really very well by have 100s of approaches
+  + Because authentication can be fairly complex
+
+  + The beauty of passport is that it exposes a common way of doing authentication regardless of which provider, standard, or which flow you're using
+
+  + It does this using packages that plug-ins to passport
+
+  + The packages that are used as plug-in in passport, are called strategies!
+
+  + The passport has strategy for any login system you can imagine 
+
+  + Someone has already created a passport strategy that we can reuse!
+
+  - How to setup Passport.js to perform social login?
+    + Install relevant strategy
+    + Install passport
+
+-- 17. Dotenv for Clients Secret (221)
+
+  - How are we going to connect our node application with google, so google knows our application is the one that request users to login
+    
+    + Using client ID & client secret
+
+  - Where do we put the client id?
+    + Create an object config and set client id to key to the value
+
+  + But, its not very secure to keep our secret values to out source code, which we might be sharing with others or publishing on the github
+
+  + The best way to do it is using the dotenv npm package
+
+  - What does the dotenv libray does?
+    + It loads environmental variables from .env file
+    + We can access the those variables using process.env
+
+  + This is useful when you have multiple environments
+  + Development, Testing, Production etc
+
+  + For example, a database url, that points different for developemt and different for production
+
+  + In that case we separate our .env files using, dev.env or prod.env, and load the appropriate one
+
+  - How to use dotenv library?
+    + You have to just load the dotenv library
+    + Does not have to assign it to a variable
+    + And, call the config() method on it
+    - For example:
+      >> require('dotenv').config();
+
+  - Format for the .env file:
+    >> key1=value1
+    >> key2=value2
+
+    + Note: Declare string values without any quote 
+
+  + Important: Put all .env files inside the .gitignore file
+
+-- 18. Authentication w/ Google & OAuth 1 (222)
+
+  - How to initialize passport?
+    + Include passport & the Strategy class from the passport strategy
+    - Initialize the passport middleware:
+      >> app.use(passport.initialize());
+
+    - Initialize the passport strategy:
+      >> passport.use(new Strategy({
+        callbackURL: 'auth/google/callback',
+        clientID: config.CLIENT_ID;
+        clientSecret: config.CLIENT_SECRET;
+      }, )))
+
+    - The second arguement received by the Strategy class is the verify function
+      + It receives a callback
+      + And, when a user is authenticated, it will run
+      + It parses users credentials, and they will be passed
+
+  - What's up with the verify callback?
+    + If the credentials we have passed, are valid, we call done to supply passport that the user has authenticated.
+
+    + If something goes wrong, we can pass the error as the first arguement in the done function
+
+    + The verify callback receives four arguements
+    + Access token, refresh token, profile, done (callback)
+
+    + Access token --> Very important
+    + Refresh token --> Not that important
+    + Profile --> Logged user data
+    + Done --> a callback --> done(error = null, userData = profile);
+
+  - What's up with the done callback?
+    + When we pass the profile in the done function
+    + Passport knows now this user has logged in 
+
+  - What's the point of verify callback if we are passing back the profile object that was already passed?
+    + User's password has passed in the profile
+    + If we wanna compare passwords, we can here
+    + Also, if we are using a database, we can save the data in the database through the verify callback
+
+-- 19. Authentication w/ Google & OAuth 2 (223)
+
+  
+
+4th Day - Sunday - 219 - 226
+
+5th Day - Monday - 227 - 236 
 
   
 
