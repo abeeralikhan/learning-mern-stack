@@ -653,26 +653,208 @@
     + If we wanna compare passwords, we can here
     + Also, if we are using a database, we can save the data in the database through the verify callback
 
+[ 05/10/2022 17:17 Day 05 ]
+
 -- 19. Authentication w/ Google & OAuth 2 (223)
 
+  + The callbackURL is a key part of the OAuth process 
+
+  + The Google Authorization server needs to call this callbackURL, so an authorization code can be exchanged for an access token 
+
+  + Luckily, passport has covered us here. 
+
+  - Instead of writing our own route controller for the callbackURL, passport provide us with a function:
+    >> app.get('/auth/google/callback', passport.authenticate('google', {
+      failureRedirect: '/failure',
+      successRedirect: '/'
+    }))
+
+    + 1st arg --> 'google' --> to tell passport we're using the google strategy
+    - 2nd arg --> An Options Object 
+      - Here we need to define:
+        1) failureRedirect --> What happens when we fail to authenticate
+        2) successRedirect --> What happens when we successfully authenticate
+        3) session: false --> to create a session or not --> will keep it false for now
+
+    + Note: We can create our own request handler for the callbackURL, but we're using to passport one
+
+  + Above, passport middleware will be handling three steps in the oauth2 code flow for us
+
+  + From authorization code respone to gettign the access token
+
+  - How will the entire flow of the oauth start?
+    + From frontend, we will be selecting sign in using google
+    + From backend, we will be calling the /auth/google endpoint
+
+    + That's how the flow will start 
+
+  + We can use the same passport.authenticate('google') middleware while logging in as well!
+
+  - How we can use the passport middle while loggin in the user?
+    >> app.get('/auth/google', passport.authenticate('google', {
+      scope: ['email', 'profile']
+    }))
+
+    + 1st arg --> 'google' --> to tell passport we're using the google strategy
+    - 2nd arg --> An Options Object 
+      - Here we need to define the scope:
+        + What information of the user we need
+        + scope: ['data1', 'data2']
+
+-- 20. Cookie Based Authentication (224)
+
+  - How to see cookies and local storage of your browser?
+    + Goto Developers Setting
+    + Goto Application or the Storage tab
+
+  + Cookie-based Authentication --> Traditional
+  + Token-based Authorization --> Modern
   
+-- 21. Sesssions (225)
 
-4th Day - Sunday - 219 - 226
+  + This topic will come up when you'll be building large authenticated websites
 
-5th Day - Monday - 227 - 236 
+  - What is a session?
+    + It is a way of saving some information about the current active user
+    + For example, it can store name of the user, what page of the site they last visited
 
-  
+  + Name of the client can be store at client side without worrying about the server side session. There's no reason to keep this data secure.
 
+  + We want session to store data that can be modified by the browser
 
+  - What kind of data we dont want our users to change?
+    + Users bank balance
+    + Their permissions to access data in the server
 
-    
+  + Users have access to read it, but cannot modify it 
 
+  + This is the data we most often need sessions for
 
+  + Session are short lived
 
+  + Sessions are only active when a user is interacting with a webpage
 
-  
+  - Example for the difference between session & database
+    + In a an ecommerce website, the items you in your cart maybe stored in a session
+    + But, your order history must be living inside a database 
+    + Because, order history must be persisted through the many sessions
 
-    
+  + Sessions can be tied to the browser you're using
 
+  + Whereas, database has not any connection with the browser you're usign
 
+-- 22. Server vs Client Side Sessions w/ Cookies (226)
 
+  + We sessions to store temporary user data, as the user is using our application
+
+  - How do we store session data?
+    - We store sessions in one of two ways
+      + Server side session --> in the database --> deleted when the user logs out 
+      + Client side session --> in the browser (cookies)
+
+  + Cookies are almost always used to implement sessions 
+
+  + But, we do different things inside the cookie depending on server or client side session
+
+  - Ways of using cookies:
+    1) Stateful cookies
+      - Example of a stateful cookie:
+        + Upon authentication by providing the correct password, the user is authenticated
+        + A session identifier is set in the cookies
+      
+      - When we do stateful cookies?
+        + When doing server side sessions
+
+      + We require a databse to store our sessions data, and the server needs to lookup the session in the database to identify the user by the session id 
+
+      + This is great we have a database
+
+      + But, it requires an additional request by the server to lookup the stored in the database
+
+      + It can be challenging when you have many users 
+
+    2) Stateless cookies
+      + All the session information you need lives on the client side already 
+
+      + It is stored in the browsers cookies
+
+      - How to prevent users temparing with that cookie?
+        + The server signs the cookie value using the secret that only the server has access to
+
+      + It's easier to scale while using the client side session
+
+      + Code at our backend is reduced because the session will be handled by the browser
+
+  + Stateful Cookies --> Server Side Session
+  + Stateless Cookies --> Client Side Session
+
+  + If we are really concern with keeping the data inside the cookies really really secrect. Then, we can do the server side session
+
+  + However, in the vast majority of the cases, client side session is fine. Whereas, the key to sign the session, only the server has it. So the session cant be tempared easily
+
+  + We have to makesure the information inside the session is not too large
+
+  + Browser can accomadate sessions upto 4kb
+
+  + For larger sessions, using the server approach makes sense
+
+-- 23. Session Middleware in Express (227)
+
+  + There are hundreds of NPM packages for managing sessions
+
+  - The two main NPM packages to implement sessions:
+    1) express-session --> for server-side sessions
+    2) cookie-session --> for client-side sessions
+
+    + Both are very common
+    + Both are part of Express JS organization
+
+    + But, express session is the most widely used session middleware that we can get for express
+
+  - express-session middleware
+    + Middleware that stores data on the server
+    + It still uses cookie, but only store the session id in it, but not the session data
+    + Session data itself lives in the database on the server
+
+    + By default, it uses in memory storage, which will be erased as you restart your server
+    + It is not intended to be used in the production environment
+    + It production environment, we need to setup our own scalable session store
+
+  - cookie-session middleware
+    + Stores the actual session data in user's cookie, that will be sent back and forth from the browser to the server whenever we make a request
+    + This cookies stores the entire session instead of the session id or the key 
+
+    + The benefit, is that its simpler, we dont require a database
+    + Helps us make our node process stateless
+
+    + Downside, they need to be small!
+
+  + We will be using cookie-session middleware
+
+  + By default, httpOnly & secure flag is checked in the sessions middleware, so the client javascript wont have any access to it 
+
+-- Q. Cross Side Scripting Attacks (CSSA)
+
+-- Q. Database vs Sesssions 
+
+-- Q. Cookie-based Authentication vs Token-based Authentication
+
+-- Q. Client Side Sessions vs Server Side Sessions
+
+-- Q. CA-Signed vs Self-Signed Certificates
+
+-- Q. HTTP vs HTTPS
+
+-- Q. SSL vs TLS
+
+-- Q. What are Digital Certificates?
+
+-- Q. What is the Man In The Middle Attack?
+
+-- Q. Authentication vs Authorization
+
+-- Q. API Keys vs Authentication Tokens
+
+-- Q. The OAuth Standard
+
+-- Q. Roles in the Authorization OAuth 2.0 Code Flow
